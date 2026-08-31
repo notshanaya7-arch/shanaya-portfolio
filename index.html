@@ -1,15 +1,22 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shanaya | Web Designer & Video Editor</title>
+<title>Shanaya | Websites • Video • Thumbnails</title>
 
-<meta name="description" content="Shanaya creates modern websites, creative digital experiences and engaging video edits.">
+<meta name="description"
+content="Shanaya creates websites, video edits and eye-catching thumbnails at affordable prices.">
 
 <style>
+
+/* ==============================
+   RESET
+============================== */
 
 *{
     margin:0;
@@ -23,8 +30,8 @@ html{
 
 body{
     font-family:Arial, Helvetica, sans-serif;
-    background:#07070d;
-    color:#fff;
+    background:#07070b;
+    color:#ffffff;
     overflow-x:hidden;
 }
 
@@ -37,1324 +44,2325 @@ button{
     font-family:inherit;
 }
 
-/* =========================
-   BACKGROUND
-========================= */
+
+/* ==============================
+   ANIMATED BACKGROUND
+============================== */
 
 body::before{
     content:"";
     position:fixed;
     width:500px;
     height:500px;
+    border-radius:50%;
     background:#7c3aed;
     filter:blur(180px);
-    opacity:.18;
-    border-radius:50%;
-    top:-200px;
+    opacity:.16;
+    top:-250px;
     left:-200px;
-    z-index:-2;
-    animation:moveGlow 10s infinite alternate ease-in-out;
+    z-index:-5;
+    animation:glowOne 12s infinite alternate ease-in-out;
 }
 
 body::after{
     content:"";
     position:fixed;
-    width:450px;
-    height:450px;
+    width:500px;
+    height:500px;
+    border-radius:50%;
     background:#ec4899;
     filter:blur(180px);
-    opacity:.13;
-    border-radius:50%;
-    bottom:-200px;
-    right:-200px;
-    z-index:-2;
-    animation:moveGlow2 12s infinite alternate ease-in-out;
+    opacity:.12;
+    right:-250px;
+    bottom:-250px;
+    z-index:-5;
+    animation:glowTwo 15s infinite alternate ease-in-out;
 }
 
-@keyframes moveGlow{
-    from{transform:translate(0,0);}
-    to{transform:translate(250px,150px);}
+@keyframes glowOne{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(250px,200px);
+    }
+
 }
 
-@keyframes moveGlow2{
-    from{transform:translate(0,0);}
-    to{transform:translate(-200px,-100px);}
+@keyframes glowTwo{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(-250px,-180px);
+    }
+
 }
 
-/* =========================
-   NAVBAR
-========================= */
+
+/* ==============================
+   NAVIGATION
+============================== */
 
 nav{
+
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    padding:20px 7%;
+
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    background:rgba(7,7,13,.7);
+    align-items:center;
+
+    padding:20px 7%;
+
+    background:rgba(7,7,11,.72);
     backdrop-filter:blur(15px);
+
     border-bottom:1px solid rgba(255,255,255,.06);
+
     z-index:1000;
+
 }
 
 .logo{
+
     font-size:24px;
-    font-weight:800;
+    font-weight:900;
     letter-spacing:1px;
+
 }
 
 .logo span{
+
     color:#a78bfa;
+
 }
 
 .nav-links{
+
     display:flex;
     gap:30px;
     list-style:none;
+
 }
 
 .nav-links a{
-    color:#bbb;
+
+    color:#999;
     font-size:14px;
+
     transition:.3s;
+
 }
 
 .nav-links a:hover{
-    color:#fff;
+
+    color:white;
+
 }
 
 .menu-btn{
+
     display:none;
+
     background:none;
-    border:0;
+    border:none;
+
     color:white;
-    font-size:26px;
+
+    font-size:25px;
+
     cursor:pointer;
+
 }
 
-/* =========================
+
+/* ==============================
    GENERAL
-========================= */
+============================== */
 
 section{
+
     padding:110px 8%;
+
 }
 
 .container{
+
     max-width:1150px;
     margin:auto;
+
 }
 
 .section-title{
+
     text-align:center;
     margin-bottom:60px;
+
 }
 
-.section-title small{
+.section-title span{
+
     color:#a78bfa;
+
     text-transform:uppercase;
+
     letter-spacing:3px;
+
+    font-size:12px;
+
 }
 
 .section-title h2{
-    font-size:clamp(35px,5vw,55px);
+
+    font-size:clamp(38px,5vw,60px);
+
     margin-top:10px;
+
 }
 
 .section-title p{
-    color:#999;
+
+    color:#888;
+
     max-width:600px;
+
     margin:15px auto;
+
     line-height:1.7;
+
 }
 
-/* =========================
+
+/* ==============================
    HERO
-========================= */
+============================== */
 
 .hero{
+
     min-height:100vh;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     text-align:center;
+
     padding-top:150px;
+
 }
 
 .hero-content{
+
     max-width:900px;
-    animation:heroIn 1s ease;
+
+    animation:heroEnter 1.2s ease;
+
 }
 
-@keyframes heroIn{
+@keyframes heroEnter{
+
     from{
+
         opacity:0;
+
         transform:translateY(40px);
+
     }
+
     to{
+
         opacity:1;
+
         transform:translateY(0);
+
     }
+
 }
 
-.badge{
+.available{
+
     display:inline-block;
+
     padding:9px 16px;
-    border:1px solid rgba(167,139,250,.3);
+
     border-radius:50px;
-    color:#c4b5fd;
+
+    border:1px solid rgba(167,139,250,.3);
+
     background:rgba(124,58,237,.1);
-    margin-bottom:25px;
+
+    color:#c4b5fd;
+
     font-size:13px;
+
+    margin-bottom:25px;
+
 }
 
 .hero h1{
-    font-size:clamp(55px,9vw,105px);
+
+    font-size:clamp(50px,8vw,100px);
+
     line-height:.95;
+
     letter-spacing:-5px;
+
 }
 
 .gradient{
-    background:linear-gradient(90deg,#a78bfa,#ec4899);
+
+    background:linear-gradient(
+        90deg,
+        #a78bfa,
+        #ec4899
+    );
+
     -webkit-background-clip:text;
+
     color:transparent;
+
+}
+
+.hero h2{
+
+    margin-top:25px;
+
+    color:#aaa;
+
+    font-size:clamp(20px,3vw,30px);
+
+    font-weight:400;
+
 }
 
 .hero p{
-    color:#aaa;
-    font-size:20px;
+
+    color:#888;
+
     max-width:700px;
-    line-height:1.7;
-    margin:30px auto;
+
+    margin:25px auto;
+
+    font-size:18px;
+
+    line-height:1.8;
+
 }
 
 .buttons{
+
     display:flex;
+
     justify-content:center;
+
     gap:15px;
+
     flex-wrap:wrap;
+
+    margin-top:30px;
+
 }
 
 .btn{
+
     padding:15px 25px;
+
     border-radius:50px;
+
     font-weight:bold;
+
     display:inline-block;
+
     transition:.3s;
+
 }
 
 .btn:hover{
+
     transform:translateY(-5px);
+
 }
 
 .primary{
-    background:#fff;
-    color:#000;
+
+    background:white;
+
+    color:black;
+
 }
 
 .secondary{
+
     border:1px solid #333;
-    color:#fff;
+
+    color:white;
+
 }
 
 .scroll{
-    margin-top:70px;
-    color:#666;
-    font-size:12px;
-    letter-spacing:2px;
+
+    margin-top:65px;
+
+    color:#555;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
 }
 
-/* =========================
+
+/* ==============================
    STATS
-========================= */
+============================== */
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-    max-width:800px;
+
+    max-width:850px;
+
     margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
 }
 
 .stat{
+
     text-align:center;
+
     padding:25px;
+
     border:1px solid #222;
+
+    border-radius:20px;
+
     background:rgba(255,255,255,.02);
-    border-radius:18px;
+
 }
 
 .stat h3{
+
     font-size:32px;
+
     color:#c4b5fd;
+
 }
 
 .stat p{
-    color:#888;
+
+    color:#777;
+
     margin-top:5px;
+
 }
 
-/* =========================
+
+/* ==============================
    ABOUT
-========================= */
+============================== */
 
 .about-grid{
+
     display:grid;
+
     grid-template-columns:1fr 1fr;
+
     gap:60px;
+
     align-items:center;
+
 }
 
 .about-text h3{
+
     font-size:35px;
+
     margin-bottom:20px;
+
 }
 
 .about-text p{
-    color:#999;
+
+    color:#929292;
+
     line-height:1.8;
+
     margin-bottom:15px;
+
 }
 
 .about-card{
-    padding:40px;
+
+    padding:45px;
+
     border:1px solid #25252d;
+
     border-radius:25px;
-    background:linear-gradient(145deg,#11111a,#0b0b12);
+
+    background:linear-gradient(
+        145deg,
+        #11111a,
+        #09090d
+    );
+
     position:relative;
+
     overflow:hidden;
+
 }
 
 .about-card::before{
+
     content:"";
+
     position:absolute;
-    width:150px;
-    height:150px;
+
+    width:170px;
+
+    height:170px;
+
     background:#8b5cf6;
+
     filter:blur(80px);
+
     opacity:.3;
+
+    right:-50px;
+
+    top:-50px;
+
 }
 
 .about-card h3{
-    font-size:50px;
+
+    font-size:48px;
+
     position:relative;
+
 }
 
 .about-card p{
-    color:#999;
-    margin-top:15px;
-    line-height:1.6;
+
     position:relative;
+
+    color:#888;
+
+    line-height:1.7;
+
+    margin-top:15px;
+
 }
 
-/* =========================
-   SERVICES
-========================= */
 
-.services-grid{
+/* ==============================
+   SERVICES
+============================== */
+
+.services{
+
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:20px;
+
 }
 
 .service{
+
     padding:35px;
+
     border:1px solid #222;
-    border-radius:22px;
-    background:#0d0d14;
+
+    border-radius:23px;
+
+    background:#0d0d13;
+
     transition:.4s;
+
 }
 
 .service:hover{
+
     transform:translateY(-10px);
+
     border-color:#7c3aed;
-    box-shadow:0 20px 50px rgba(124,58,237,.12);
+
+    box-shadow:
+    0 20px 60px rgba(124,58,237,.12);
+
 }
 
-.icon{
-    font-size:38px;
+.service-icon{
+
+    font-size:40px;
+
     margin-bottom:20px;
+
 }
 
 .service h3{
-    font-size:22px;
+
+    font-size:23px;
+
     margin-bottom:12px;
+
 }
 
 .service p{
+
     color:#888;
+
     line-height:1.7;
+
 }
 
-/* =========================
-   SKILLS
-========================= */
+.service-price{
 
-.skills{
-    max-width:800px;
-    margin:auto;
+    margin-top:20px;
+
+    color:#c4b5fd;
+
+    font-weight:bold;
+
 }
 
-.skill{
-    margin-bottom:25px;
-}
 
-.skill-top{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:8px;
-}
-
-.skill-top span:last-child{
-    color:#999;
-}
-
-.bar{
-    height:7px;
-    background:#1b1b24;
-    border-radius:10px;
-    overflow:hidden;
-}
-
-.fill{
-    height:100%;
-    width:0;
-    background:linear-gradient(90deg,#8b5cf6,#ec4899);
-    border-radius:10px;
-    transition:2s;
-}
-
-/* =========================
-   PORTFOLIO
-========================= */
+/* ==============================
+   WORK
+============================== */
 
 .projects{
+
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
+
     gap:25px;
+
 }
 
 .project{
-    min-height:280px;
+
+    min-height:320px;
+
     padding:30px;
+
     border:1px solid #222;
+
     border-radius:25px;
-    background:linear-gradient(145deg,#11111a,#09090e);
+
+    background:
+    linear-gradient(
+        145deg,
+        #11111a,
+        #09090e
+    );
+
     position:relative;
+
     overflow:hidden;
+
     transition:.4s;
+
 }
 
 .project:hover{
-    transform:scale(1.02);
+
+    transform:translateY(-8px);
+
     border-color:#8b5cf6;
+
+}
+
+.project::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:#7c3aed;
+
+    filter:blur(100px);
+
+    opacity:.15;
+
+    right:-70px;
+
+    bottom:-70px;
+
 }
 
 .project-number{
-    font-size:14px;
+
     color:#777;
-}
 
-.project h3{
-    font-size:32px;
-    margin-top:90px;
-}
+    font-size:13px;
 
-.project p{
-    color:#888;
-    margin-top:10px;
 }
 
 .project-tag{
+
     position:absolute;
-    top:25px;
+
     right:25px;
-    padding:7px 12px;
-    border-radius:30px;
+
+    top:25px;
+
     background:#181822;
+
+    padding:7px 12px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
     color:#bbb;
-    font-size:12px;
+
 }
 
-/* =========================
+.project h3{
+
+    margin-top:100px;
+
+    font-size:35px;
+
+}
+
+.project p{
+
+    color:#888;
+
+    line-height:1.6;
+
+    margin-top:10px;
+
+}
+
+.project-note{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    color:#a78bfa;
+
+    font-size:13px;
+
+}
+
+
+/* ==============================
    PRICING
-========================= */
+============================== */
 
 .pricing{
+
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:20px;
+
 }
 
 .price-card{
+
     padding:35px;
+
     border:1px solid #222;
+
     border-radius:25px;
-    background:#0d0d14;
+
+    background:#0d0d13;
+
     transition:.3s;
+
 }
 
 .price-card:hover{
+
     transform:translateY(-8px);
+
 }
 
 .price-card.featured{
+
     border-color:#8b5cf6;
-    box-shadow:0 20px 70px rgba(124,58,237,.12);
+
+    box-shadow:
+    0 20px 70px rgba(124,58,237,.12);
+
 }
 
 .price-card h3{
-    font-size:20px;
+
+    font-size:21px;
+
 }
 
 .price{
-    font-size:40px;
+
+    font-size:38px;
+
     margin:20px 0;
+
 }
 
-.price span{
+.price small{
+
     color:#777;
-    font-size:14px;
+
+    font-size:13px;
+
 }
 
 .features{
+
     list-style:none;
+
     margin:25px 0;
+
 }
 
 .features li{
+
     color:#999;
+
     padding:9px 0;
+
 }
 
 .features li::before{
+
     content:"✓";
+
     color:#a78bfa;
+
     margin-right:10px;
+
 }
 
-/* =========================
-   WHY ME
-========================= */
+
+/* ==============================
+   WHY
+============================== */
 
 .why-grid{
+
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
+
     gap:20px;
+
 }
 
 .why{
+
     padding:30px;
+
     border:1px solid #222;
+
     border-radius:20px;
-    background:#0d0d14;
+
+    background:#0d0d13;
+
 }
 
 .why h3{
+
     margin-bottom:10px;
+
 }
 
 .why p{
+
     color:#888;
-    line-height:1.6;
+
+    line-height:1.7;
+
 }
 
-/* =========================
+
+/* ==============================
+   FAQ
+============================== */
+
+.faq{
+
+    max-width:800px;
+
+    margin:auto;
+
+}
+
+details{
+
+    border:1px solid #222;
+
+    border-radius:15px;
+
+    margin-bottom:12px;
+
+    padding:20px;
+
+    background:#0d0d13;
+
+}
+
+summary{
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+details p{
+
+    color:#888;
+
+    line-height:1.7;
+
+    margin-top:15px;
+
+}
+
+
+/* ==============================
    CONTACT
-========================= */
+============================== */
 
 .contact-box{
-    max-width:850px;
+
+    max-width:900px;
+
     margin:auto;
+
     padding:60px;
+
     text-align:center;
+
     border:1px solid #25252d;
+
     border-radius:30px;
-    background:linear-gradient(145deg,#11111a,#0b0b12);
+
+    background:
+    linear-gradient(
+        145deg,
+        #11111a,
+        #09090e
+    );
+
 }
 
 .contact-box h2{
+
     font-size:clamp(40px,6vw,65px);
+
 }
 
 .contact-box p{
-    color:#999;
+
+    color:#888;
+
     line-height:1.7;
-    margin:20px auto 30px;
+
     max-width:600px;
+
+    margin:20px auto 30px;
+
 }
 
-.email{
-    display:inline-block;
-    padding:15px 22px;
+.contact-options{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.contact-option{
+
+    padding:14px 20px;
+
     border:1px solid #333;
+
     border-radius:50px;
-    color:#c4b5fd;
-    cursor:pointer;
+
+    color:#bbb;
+
     transition:.3s;
+
 }
 
-.email:hover{
-    background:#15151f;
+.contact-option:hover{
+
+    border-color:#8b5cf6;
+
+    color:white;
+
+    transform:translateY(-4px);
+
 }
 
-/* =========================
+
+/* ==============================
    FOOTER
-========================= */
+============================== */
 
 footer{
-    padding:40px 8%;
+
     border-top:1px solid #1c1c23;
+
+    padding:40px 8%;
+
     display:flex;
+
     justify-content:space-between;
+
     color:#666;
+
     font-size:13px;
+
 }
 
-footer a{
+footer strong{
+
     color:#aaa;
+
 }
 
-/* =========================
-   REVEAL ANIMATION
-========================= */
+
+/* ==============================
+   SCROLL ANIMATION
+============================== */
 
 .reveal{
+
     opacity:0;
+
     transform:translateY(40px);
-    transition:1s;
+
+    transition:
+    opacity 1s ease,
+    transform 1s ease;
+
 }
 
 .reveal.active{
+
     opacity:1;
+
     transform:translateY(0);
+
 }
 
-/* =========================
+
+/* ==============================
    BACK TO TOP
-========================= */
+============================== */
 
 #top{
+
     position:fixed;
-    bottom:25px;
+
     right:25px;
+
+    bottom:25px;
+
     width:45px;
+
     height:45px;
+
     border-radius:50%;
+
     border:1px solid #333;
+
     background:#111;
+
     color:white;
+
     cursor:pointer;
+
     opacity:0;
+
     pointer-events:none;
+
     transition:.3s;
+
     z-index:999;
+
 }
 
 #top.show{
+
     opacity:1;
+
     pointer-events:auto;
+
 }
 
-/* =========================
+
+/* ==============================
    MOBILE
-========================= */
+============================== */
 
 @media(max-width:800px){
 
     .nav-links{
+
         position:absolute;
+
         top:75px;
+
         left:0;
+
         width:100%;
+
         background:#0b0b12;
+
         flex-direction:column;
+
         padding:25px;
+
         display:none;
+
         text-align:center;
+
     }
 
     .nav-links.open{
+
         display:flex;
+
     }
 
     .menu-btn{
+
         display:block;
+
     }
 
     .stats,
-    .services-grid,
-    .pricing,
-    .why-grid{
+    .services,
+    .pricing{
+
         grid-template-columns:1fr;
+
     }
 
     .projects{
+
         grid-template-columns:1fr;
+
     }
 
     .about-grid{
+
         grid-template-columns:1fr;
+
     }
 
-    .hero h1{
-        letter-spacing:-3px;
+    .why-grid{
+
+        grid-template-columns:1fr;
+
     }
 
     .contact-box{
-        padding:35px 20px;
+
+        padding:40px 20px;
+
+    }
+
+    .hero h1{
+
+        letter-spacing:-3px;
+
     }
 
     footer{
+
         flex-direction:column;
+
         gap:10px;
+
         text-align:center;
+
     }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- NAVBAR -->
+
+<!-- ==========================
+     NAVIGATION
+=========================== -->
 
 <nav>
 
-    <div class="logo">
-        SHANAYA<span>.</span>
-    </div>
+<div class="logo">
 
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+SHANAYA<span>.</span>
 
-    <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+</div>
+
+
+<button
+class="menu-btn"
+onclick="toggleMenu()">
+
+☰
+
+</button>
+
+
+<ul class="nav-links" id="navLinks">
+
+<li>
+<a href="#home">Home</a>
+</li>
+
+<li>
+<a href="#about">About</a>
+</li>
+
+<li>
+<a href="#services">Services</a>
+</li>
+
+<li>
+<a href="#work">Work</a>
+</li>
+
+<li>
+<a href="#pricing">Pricing</a>
+</li>
+
+<li>
+<a href="#contact">Contact</a>
+</li>
+
+</ul>
 
 </nav>
 
 
-<!-- HERO -->
 
-<section class="hero" id="home">
+<!-- ==========================
+     HERO
+=========================== -->
 
-    <div class="hero-content">
+<section
+class="hero"
+id="home">
 
-        <div class="badge">
-            ✦ Available for new projects
-        </div>
+<div class="hero-content">
 
-        <h1>
-            Hi, I'm <span class="gradient">Shanaya.</span>
-        </h1>
+<div class="available">
 
-        <p>
-            I turn ideas into modern websites, creative digital experiences
-            and engaging videos that people remember.
-        </p>
+✦ Available for new projects
 
-        <div class="buttons">
+</div>
 
-            <a href="#work" class="btn primary">
-                View My Work →
-            </a>
 
-            <a href="#contact" class="btn secondary">
-                Let's Work Together
-            </a>
+<h1>
 
-        </div>
+Hi, I'm
 
-        <div class="scroll">
-            SCROLL TO EXPLORE ↓
-        </div>
+<span class="gradient">
 
-    </div>
+Shanaya.
+
+</span>
+
+</h1>
+
+
+<h2>
+
+Website Developer • Video Editor • Thumbnail Designer
+
+</h2>
+
+
+<p>
+
+I turn ideas into modern websites, engaging videos
+and eye-catching thumbnails — without making things
+complicated or expensive.
+
+</p>
+
+
+<div class="buttons">
+
+<a
+href="#work"
+class="btn primary">
+
+See My Work →
+
+</a>
+
+
+<a
+href="#contact"
+class="btn secondary">
+
+Work With Me
+
+</a>
+
+</div>
+
+
+<div class="scroll">
+
+SCROLL TO EXPLORE ↓
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- STATS -->
+
+<!-- ==========================
+     STATS
+=========================== -->
 
 <section>
 
 <div class="stats reveal">
 
-    <div class="stat">
-        <h3>2+</h3>
-        <p>Projects</p>
-    </div>
 
-    <div class="stat">
-        <h3>100%</h3>
-        <p>Creative</p>
-    </div>
+<div class="stat">
 
-    <div class="stat">
-        <h3>∞</h3>
-        <p>Ideas</p>
-    </div>
+<h3>1+</h3>
+
+<p>
+Website Project
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3>1 Day</h3>
+
+<p>
+Fast Website Build
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3>₹600</h3>
+
+<p>
+Video Editing Starts
+</p>
+
+</div>
+
 
 </div>
 
 </section>
 
 
-<!-- ABOUT -->
+
+<!-- ==========================
+     ABOUT
+=========================== -->
 
 <section id="about">
 
 <div class="container">
 
-    <div class="section-title reveal">
-        <small>About Me</small>
-        <h2>Creative by nature.</h2>
-    </div>
 
-    <div class="about-grid">
+<div class="section-title reveal">
 
-        <div class="about-text reveal">
+<span>About Me</span>
 
-            <h3>I create things I'm proud to show.</h3>
+<h2>Let's create something cool.</h2>
 
-            <p>
-                I'm Shanaya, a creative web designer and video editor
-                who enjoys turning ideas into visually interesting
-                digital experiences.
-            </p>
+</div>
 
-            <p>
-                I focus on creating websites that are modern, easy to
-                use and designed to make an impression.
-            </p>
 
-        </div>
+<div class="about-grid">
 
-        <div class="about-card reveal">
 
-            <h3>IDEA →</h3>
+<div class="about-text reveal">
 
-            <p>
-                You bring the idea.
-                I help turn it into something people can see,
-                interact with and remember.
-            </p>
+<h3>
 
-        </div>
+Creative work without the complicated stuff.
 
-    </div>
+</h3>
+
+
+<p>
+
+I'm Shanaya, a beginner web developer and
+creative editor who enjoys turning ideas into
+things people can actually see and use.
+
+</p>
+
+
+<p>
+
+I work on websites, video edits and thumbnails,
+with a focus on making them look clean,
+modern and interesting.
+
+</p>
+
+
+<p>
+
+I'm still growing my skills, which means I'm
+focused on keeping my services affordable while
+building real projects and helping people bring
+their ideas to life.
+
+</p>
+
+</div>
+
+
+
+<div class="about-card reveal">
+
+<h3>
+
+IDEA →
+
+</h3>
+
+
+<p>
+
+You bring the idea.
+
+I bring the creativity, design and editing.
+
+Together, we turn it into something real.
+
+</p>
+
+</div>
+
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- SERVICES -->
+
+<!-- ==========================
+     SERVICES
+=========================== -->
 
 <section id="services">
 
 <div class="container">
 
-    <div class="section-title reveal">
 
-        <small>What I Do</small>
+<div class="section-title reveal">
 
-        <h2>Services</h2>
+<span>What I Do</span>
 
-        <p>
-            From websites to videos, I create digital work
-            designed around your goals.
-        </p>
+<h2>My Services</h2>
 
-    </div>
+<p>
 
+Simple creative services at prices that
+are easier to afford.
 
-    <div class="services-grid">
+</p>
 
-        <div class="service reveal">
-
-            <div class="icon">💻</div>
-
-            <h3>Web Design</h3>
-
-            <p>
-                Modern, responsive websites designed to make
-                your brand look professional online.
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="service reveal">
-
-            <div class="icon">🎬</div>
-
-            <h3>Video Editing</h3>
-
-            <p>
-                Engaging edits for social media, YouTube,
-                businesses and creative projects.
-            </p>
-
-        </div>
+<div class="services">
 
 
-        <div class="service reveal">
+<div class="service reveal">
 
-            <div class="icon">✨</div>
+<div class="service-icon">
 
-            <h3>Creative Projects</h3>
+💻
 
-            <p>
-                Unique digital experiences, landing pages
-                and custom creative ideas.
-            </p>
+</div>
 
-        </div>
+<h3>
 
-    </div>
+Website Development
+
+</h3>
+
+<p>
+
+Modern and responsive websites for
+businesses, portfolios, creators and
+personal projects.
+
+</p>
+
+<div class="service-price">
+
+Starting from ₹1,999+
+
+</div>
+
+</div>
+
+
+
+<div class="service reveal">
+
+<div class="service-icon">
+
+🎬
+
+</div>
+
+<h3>
+
+Video Editing
+
+</h3>
+
+<p>
+
+Short-form videos, social media edits,
+YouTube videos and creative edits designed
+to keep viewers watching.
+
+</p>
+
+<div class="service-price">
+
+Starting from ₹600 / video
+
+</div>
+
+</div>
+
+
+
+<div class="service reveal">
+
+<div class="service-icon">
+
+🖼️
+
+</div>
+
+<h3>
+
+Thumbnail Design
+
+</h3>
+
+<p>
+
+Eye-catching thumbnails designed to make
+your videos and content stand out.
+
+</p>
+
+<div class="service-price">
+
+Starting from ₹250 / thumbnail
+
+</div>
+
+</div>
+
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- SKILLS -->
 
-<section>
-
-<div class="container">
-
-    <div class="section-title reveal">
-
-        <small>My Skills</small>
-
-        <h2>What I Work With</h2>
-
-    </div>
-
-    <div class="skills">
-
-        <div class="skill reveal">
-
-            <div class="skill-top">
-                <span>Web Design</span>
-                <span>90%</span>
-            </div>
-
-            <div class="bar">
-                <div class="fill" data-width="90%"></div>
-            </div>
-
-        </div>
-
-
-        <div class="skill reveal">
-
-            <div class="skill-top">
-                <span>HTML & CSS</span>
-                <span>85%</span>
-            </div>
-
-            <div class="bar">
-                <div class="fill" data-width="85%"></div>
-            </div>
-
-        </div>
-
-
-        <div class="skill reveal">
-
-            <div class="skill-top">
-                <span>Video Editing</span>
-                <span>80%</span>
-            </div>
-
-            <div class="bar">
-                <div class="fill" data-width="80%"></div>
-            </div>
-
-        </div>
-
-
-        <div class="skill reveal">
-
-            <div class="skill-top">
-                <span>Creative Design</span>
-                <span>95%</span>
-            </div>
-
-            <div class="bar">
-                <div class="fill" data-width="95%"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- WORK -->
+<!-- ==========================
+     WORK
+=========================== -->
 
 <section id="work">
 
 <div class="container">
 
-    <div class="section-title reveal">
 
-        <small>Portfolio</small>
+<div class="section-title reveal">
 
-        <h2>Selected Work</h2>
+<span>Portfolio</span>
 
-        <p>
-            A few things I've created.
-        </p>
+<h2>My Work</h2>
 
-    </div>
+<p>
 
+A few projects I've created so far.
 
-    <div class="projects">
+</p>
 
-        <div class="project reveal">
-
-            <span class="project-number">01 / WEB</span>
-
-            <span class="project-tag">Study Website</span>
-
-            <h3>StudyAI</h3>
-
-            <p>
-                An interactive study platform designed
-                to make learning more engaging.
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="project reveal">
-
-            <span class="project-number">02 / WEB</span>
-
-            <span class="project-tag">Coming Soon</span>
-
-            <h3>Client Project</h3>
-
-            <p>
-                Your next website could appear here.
-            </p>
-
-        </div>
+<div class="projects">
 
 
-        <div class="project reveal">
+<div class="project reveal">
 
-            <span class="project-number">03 / VIDEO</span>
+<span class="project-number">
 
-            <span class="project-tag">Coming Soon</span>
+01 / WEBSITE
 
-            <h3>Video Edit</h3>
-
-            <p>
-                A place to showcase your best video
-                editing work.
-            </p>
-
-        </div>
+</span>
 
 
-        <div class="project reveal">
+<span class="project-tag">
 
-            <span class="project-number">04 / CREATIVE</span>
+Featured
 
-            <span class="project-tag">Coming Soon</span>
+</span>
 
-            <h3>Future Project</h3>
 
-            <p>
-                More creative work coming soon.
-            </p>
+<h3>
 
-        </div>
+StudyAI
 
-    </div>
+</h3>
+
+
+<p>
+
+An interactive AI-powered study website
+designed to make learning more engaging
+and easier to explore.
+
+</p>
+
+
+<span class="project-note">
+
+⚡ Built in just 1 day
+
+</span>
+
+</div>
+
+
+
+<div class="project reveal">
+
+<span class="project-number">
+
+02 / WEBSITE
+
+</span>
+
+
+<span class="project-tag">
+
+Coming Soon
+
+</span>
+
+
+<h3>
+
+Client Website
+
+</h3>
+
+
+<p>
+
+Your project could be featured here.
+
+</p>
+
+
+<span class="project-note">
+
+🚀 Available for projects
+
+</span>
+
+</div>
+
+
+
+<div class="project reveal">
+
+<span class="project-number">
+
+03 / VIDEO
+
+</span>
+
+
+<span class="project-tag">
+
+Coming Soon
+
+</span>
+
+
+<h3>
+
+Video Edit
+
+</h3>
+
+
+<p>
+
+A showcase of my upcoming video editing
+projects.
+
+</p>
+
+
+<span class="project-note">
+
+🎬 More coming soon
+
+</span>
+
+</div>
+
+
+
+<div class="project reveal">
+
+<span class="project-number">
+
+04 / THUMBNAIL
+
+</span>
+
+
+<span class="project-tag">
+
+Coming Soon
+
+</span>
+
+
+<h3>
+
+Thumbnail Design
+
+</h3>
+
+
+<p>
+
+A collection of thumbnails created for
+YouTube and social media.
+
+</p>
+
+
+<span class="project-note">
+
+🎨 More coming soon
+
+</span>
+
+</div>
+
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- WHY ME -->
 
-<section>
-
-<div class="container">
-
-    <div class="section-title reveal">
-
-        <small>Why Work With Me</small>
-
-        <h2>Simple. Creative. Personal.</h2>
-
-    </div>
-
-
-    <div class="why-grid">
-
-        <div class="why reveal">
-
-            <h3>✨ Modern Design</h3>
-
-            <p>
-                I focus on clean layouts, modern visuals
-                and memorable experiences.
-            </p>
-
-        </div>
-
-
-        <div class="why reveal">
-
-            <h3>📱 Responsive</h3>
-
-            <p>
-                Websites are designed to work across
-                phones, tablets and computers.
-            </p>
-
-        </div>
-
-
-        <div class="why reveal">
-
-            <h3>💡 Creative Thinking</h3>
-
-            <p>
-                I don't just build pages. I look for
-                ways to make the experience interesting.
-            </p>
-
-        </div>
-
-
-        <div class="why reveal">
-
-            <h3>🤝 Personal Service</h3>
-
-            <p>
-                Every project gets individual attention
-                instead of feeling like a template.
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- PRICING -->
+<!-- ==========================
+     PRICING
+=========================== -->
 
 <section id="pricing">
 
 <div class="container">
 
-    <div class="section-title reveal">
 
-        <small>Packages</small>
+<div class="section-title reveal">
 
-        <h2>Simple Pricing</h2>
+<span>Affordable</span>
 
-        <p>
-            Starting prices. Every project can be customized.
-        </p>
+<h2>Pricing</h2>
 
-    </div>
+<p>
 
+Simple starting prices. Custom projects can
+be discussed depending on what you need.
 
-    <div class="pricing">
+</p>
 
-        <div class="price-card reveal">
-
-            <h3>Starter</h3>
-
-            <div class="price">
-                ₹1,999 <span>+</span>
-            </div>
-
-            <ul class="features">
-
-                <li>1–3 pages</li>
-                <li>Responsive design</li>
-                <li>Modern layout</li>
-                <li>Basic animations</li>
-
-            </ul>
-
-            <a href="#contact" class="btn secondary">
-                Get Started
-            </a>
-
-        </div>
+</div>
 
 
-        <div class="price-card featured reveal">
-
-            <h3>Professional</h3>
-
-            <div class="price">
-                ₹4,999 <span>+</span>
-            </div>
-
-            <ul class="features">
-
-                <li>5+ pages</li>
-                <li>Custom design</li>
-                <li>Animations</li>
-                <li>Mobile optimization</li>
-
-            </ul>
-
-            <a href="#contact" class="btn primary">
-                Get Started
-            </a>
-
-        </div>
+<div class="pricing">
 
 
-        <div class="price-card reveal">
+<div class="price-card reveal">
 
-            <h3>Custom</h3>
+<h3>
 
-            <div class="price">
-                Let's Talk
-            </div>
+Video Editing
 
-            <ul class="features">
+</h3>
 
-                <li>Fully custom website</li>
-                <li>Advanced features</li>
-                <li>Unique design</li>
-                <li>Custom requirements</li>
 
-            </ul>
+<div class="price">
 
-            <a href="#contact" class="btn secondary">
-                Contact Me
-            </a>
+₹600
 
-        </div>
+<small>
 
-    </div>
+/ video</small>
+
+</div>
+
+
+<ul class="features">
+
+<li>Short-form editing</li>
+
+<li>Basic transitions</li>
+
+<li>Music & sound</li>
+
+<li>Text / captions</li>
+
+</ul>
+
+
+<a
+href="#contact"
+class="btn secondary">
+
+Ask About Editing
+
+</a>
+
+</div>
+
+
+
+<div class="price-card featured reveal">
+
+<h3>
+
+Website
+
+</h3>
+
+
+<div class="price">
+
+₹1,999+
+
+<small>
+
+starting
+
+</small>
+
+</div>
+
+
+<ul class="features">
+
+<li>Responsive design</li>
+
+<li>Modern layout</li>
+
+<li>Basic animations</li>
+
+<li>Custom content</li>
+
+</ul>
+
+
+<a
+href="#contact"
+class="btn primary">
+
+Build My Website
+
+</a>
+
+</div>
+
+
+
+<div class="price-card reveal">
+
+<h3>
+
+Thumbnail
+
+</h3>
+
+
+<div class="price">
+
+₹250
+
+<small>
+
+/ thumbnail
+
+</small>
+
+</div>
+
+
+<ul class="features">
+
+<li>Custom design</li>
+
+<li>Eye-catching layout</li>
+
+<li>Text & graphics</li>
+
+<li>Social-media ready</li>
+
+</ul>
+
+
+<a
+href="#contact"
+class="btn secondary">
+
+Order Thumbnail
+
+</a>
+
+</div>
+
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- CONTACT -->
+
+<!-- ==========================
+     WHY ME
+=========================== -->
+
+<section>
+
+<div class="container">
+
+
+<div class="section-title reveal">
+
+<span>Why Me?</span>
+
+<h2>Why work with me?</h2>
+
+</div>
+
+
+<div class="why-grid">
+
+
+<div class="why reveal">
+
+<h3>
+
+💰 Affordable
+
+</h3>
+
+<p>
+
+I'm keeping my starting prices reasonable
+while I'm building my portfolio and experience.
+
+</p>
+
+</div>
+
+
+
+<div class="why reveal">
+
+<h3>
+
+⚡ Fast
+
+</h3>
+
+<p>
+
+I work efficiently and focus on getting
+projects completed without unnecessary delays.
+
+</p>
+
+</div>
+
+
+
+<div class="why reveal">
+
+<h3>
+
+🎨 Creative
+
+</h3>
+
+<p>
+
+I enjoy experimenting with designs,
+animations and ideas to make projects
+stand out.
+
+</p>
+
+</div>
+
+
+
+<div class="why reveal">
+
+<h3>
+
+🤝 Personal
+
+</h3>
+
+<p>
+
+You're working directly with me, so your
+ideas and feedback actually matter.
+
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================
+     FAQ
+=========================== -->
+
+<section>
+
+<div class="container">
+
+
+<div class="section-title reveal">
+
+<span>FAQ</span>
+
+<h2>Questions?</h2>
+
+</div>
+
+
+<div class="faq">
+
+
+<details class="reveal">
+
+<summary>
+
+How long does a website take?
+
+</summary>
+
+<p>
+
+The time depends on the size and features.
+Some smaller websites can be completed very
+quickly. My StudyAI project was made in just
+one day.
+
+</p>
+
+</details>
+
+
+
+<details class="reveal">
+
+<summary>
+
+Can I request a custom design?
+
+</summary>
+
+<p>
+
+Absolutely. You can tell me what style,
+colors, features or ideas you want, and
+we can build around them.
+
+</p>
+
+</details>
+
+
+
+<details class="reveal">
+
+<summary>
+
+Can you edit short videos?
+
+</summary>
+
+<p>
+
+Yes. I offer video editing starting from
+₹600 per video.
+
+</p>
+
+</details>
+
+
+
+<details class="reveal">
+
+<summary>
+
+Can I contact you before ordering?
+
+</summary>
+
+<p>
+
+Of course. You can contact me through email
+or Instagram and tell me what you're looking for.
+
+</p>
+
+</details>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==========================
+     CONTACT
+=========================== -->
 
 <section id="contact">
 
 <div class="contact-box reveal">
 
-    <h2>Have an idea?</h2>
 
-    <p>
-        Whether you need a website, video edit or something
-        completely custom, I'd love to hear about it.
-    </p>
+<h2>
 
-    <a href="mailto:YOUR_EMAIL@gmail.com" class="btn primary">
-        Start a Project →
-    </a>
+Have an idea?
 
-    <br><br>
+</h2>
 
-    <span class="email" onclick="copyEmail()">
-        📋 YOUR_EMAIL@gmail.com
-    </span>
+
+<p>
+
+Tell me what you want to create and let's
+see what we can build together.
+
+</p>
+
+
+<div class="contact-options">
+
+
+<a
+href="mailto:email-notshanaya@gmail.com"
+class="contact-option">
+
+📧 Email Me
+
+</a>
+
+
+<a
+href="https://www.instagram.com/shanaya1615khan/"
+target="_blank"
+class="contact-option">
+
+📸 Instagram
+
+</a>
+
+
+<a
+href="mailto:email-notshanaya@gmail.com?subject=Website%20or%20Editing%20Inquiry"
+class="contact-option">
+
+🚀 Start a Project
+
+</a>
+
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- FOOTER -->
+
+<!-- ==========================
+     FOOTER
+=========================== -->
 
 <footer>
 
-    <div>
-        © 2026 Shanaya. All rights reserved.
-    </div>
+<div>
 
-    <div>
-        Made with ✦ creativity
-    </div>
+© 2026 <strong>Shanaya</strong>
+
+</div>
+
+
+<div>
+
+Websites • Videos • Thumbnails
+
+</div>
 
 </footer>
 
 
+
 <!-- BACK TO TOP -->
 
-<button id="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    ↑
+<button
+id="top"
+onclick="window.scrollTo({
+top:0,
+behavior:'smooth'
+})">
+
+↑
+
 </button>
+
 
 
 <script>
 
-/* MOBILE MENU */
+/* ==============================
+   MOBILE MENU
+============================== */
 
 function toggleMenu(){
 
     document
     .getElementById("navLinks")
-    .classList.toggle("open");
+    .classList
+    .toggle("open");
 
 }
 
 
-/* CLOSE MENU AFTER CLICK */
-
-document.querySelectorAll(".nav-links a").forEach(link => {
+document
+.querySelectorAll(".nav-links a")
+.forEach(link => {
 
     link.addEventListener("click", () => {
 
         document
         .getElementById("navLinks")
-        .classList.remove("open");
+        .classList
+        .remove("open");
 
     });
 
 });
 
 
-/* SCROLL REVEAL */
 
-const reveals = document.querySelectorAll(".reveal");
+/* ==============================
+   SCROLL REVEAL
+============================== */
+
+const reveals =
+document.querySelectorAll(".reveal");
+
 
 function revealOnScroll(){
 
     reveals.forEach(element => {
 
-        const windowHeight = window.innerHeight;
+        const top =
+        element.getBoundingClientRect().top;
 
-        const elementTop = element.getBoundingClientRect().top;
-
-        if(elementTop < windowHeight - 80){
+        if(top < window.innerHeight - 70){
 
             element.classList.add("active");
 
@@ -1364,47 +2372,34 @@ function revealOnScroll(){
 
 }
 
-window.addEventListener("scroll", revealOnScroll);
+
+window.addEventListener(
+"scroll",
+revealOnScroll
+);
 
 revealOnScroll();
 
 
-/* SKILL BARS */
 
-const fills = document.querySelectorAll(".fill");
+/* ==============================
+   BACK TO TOP
+============================== */
 
-function animateSkills(){
+window.addEventListener(
+"scroll",
+() => {
 
-    fills.forEach(fill => {
-
-        const top = fill.getBoundingClientRect().top;
-
-        if(top < window.innerHeight - 50){
-
-            fill.style.width = fill.dataset.width;
-
-        }
-
-    });
-
-}
-
-window.addEventListener("scroll", animateSkills);
-
-animateSkills();
-
-
-/* BACK TO TOP */
-
-window.addEventListener("scroll", () => {
-
-    const button = document.getElementById("top");
+    const button =
+    document.getElementById("top");
 
     if(window.scrollY > 500){
 
         button.classList.add("show");
 
-    }else{
+    }
+
+    else{
 
         button.classList.remove("show");
 
@@ -1412,19 +2407,10 @@ window.addEventListener("scroll", () => {
 
 });
 
-
-/* COPY EMAIL */
-
-function copyEmail(){
-
-    navigator.clipboard.writeText("YOUR_EMAIL@gmail.com");
-
-    alert("Email copied!");
-
-}
-
 </script>
 
+
 </body>
+
 </html>
 ```
