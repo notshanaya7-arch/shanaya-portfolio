@@ -1,0 +1,1430 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shanaya | Web Designer & Video Editor</title>
+
+<meta name="description" content="Shanaya creates modern websites, creative digital experiences and engaging video edits.">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#07070d;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#7c3aed;
+    filter:blur(180px);
+    opacity:.18;
+    border-radius:50%;
+    top:-200px;
+    left:-200px;
+    z-index:-2;
+    animation:moveGlow 10s infinite alternate ease-in-out;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:450px;
+    height:450px;
+    background:#ec4899;
+    filter:blur(180px);
+    opacity:.13;
+    border-radius:50%;
+    bottom:-200px;
+    right:-200px;
+    z-index:-2;
+    animation:moveGlow2 12s infinite alternate ease-in-out;
+}
+
+@keyframes moveGlow{
+    from{transform:translate(0,0);}
+    to{transform:translate(250px,150px);}
+}
+
+@keyframes moveGlow2{
+    from{transform:translate(0,0);}
+    to{transform:translate(-200px,-100px);}
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(7,7,13,.7);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.06);
+    z-index:1000;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#a78bfa;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#bbb;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#fff;
+}
+
+.menu-btn{
+    display:none;
+    background:none;
+    border:0;
+    color:white;
+    font-size:26px;
+    cursor:pointer;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+section{
+    padding:110px 8%;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title small{
+    color:#a78bfa;
+    text-transform:uppercase;
+    letter-spacing:3px;
+}
+
+.section-title h2{
+    font-size:clamp(35px,5vw,55px);
+    margin-top:10px;
+}
+
+.section-title p{
+    color:#999;
+    max-width:600px;
+    margin:15px auto;
+    line-height:1.7;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding-top:150px;
+}
+
+.hero-content{
+    max-width:900px;
+    animation:heroIn 1s ease;
+}
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 16px;
+    border:1px solid rgba(167,139,250,.3);
+    border-radius:50px;
+    color:#c4b5fd;
+    background:rgba(124,58,237,.1);
+    margin-bottom:25px;
+    font-size:13px;
+}
+
+.hero h1{
+    font-size:clamp(55px,9vw,105px);
+    line-height:.95;
+    letter-spacing:-5px;
+}
+
+.gradient{
+    background:linear-gradient(90deg,#a78bfa,#ec4899);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    color:#aaa;
+    font-size:20px;
+    max-width:700px;
+    line-height:1.7;
+    margin:30px auto;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 25px;
+    border-radius:50px;
+    font-weight:bold;
+    display:inline-block;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+}
+
+.primary{
+    background:#fff;
+    color:#000;
+}
+
+.secondary{
+    border:1px solid #333;
+    color:#fff;
+}
+
+.scroll{
+    margin-top:70px;
+    color:#666;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    max-width:800px;
+    margin:auto;
+}
+
+.stat{
+    text-align:center;
+    padding:25px;
+    border:1px solid #222;
+    background:rgba(255,255,255,.02);
+    border-radius:18px;
+}
+
+.stat h3{
+    font-size:32px;
+    color:#c4b5fd;
+}
+
+.stat p{
+    color:#888;
+    margin-top:5px;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about-text h3{
+    font-size:35px;
+    margin-bottom:20px;
+}
+
+.about-text p{
+    color:#999;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.about-card{
+    padding:40px;
+    border:1px solid #25252d;
+    border-radius:25px;
+    background:linear-gradient(145deg,#11111a,#0b0b12);
+    position:relative;
+    overflow:hidden;
+}
+
+.about-card::before{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    background:#8b5cf6;
+    filter:blur(80px);
+    opacity:.3;
+}
+
+.about-card h3{
+    font-size:50px;
+    position:relative;
+}
+
+.about-card p{
+    color:#999;
+    margin-top:15px;
+    line-height:1.6;
+    position:relative;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.service{
+    padding:35px;
+    border:1px solid #222;
+    border-radius:22px;
+    background:#0d0d14;
+    transition:.4s;
+}
+
+.service:hover{
+    transform:translateY(-10px);
+    border-color:#7c3aed;
+    box-shadow:0 20px 50px rgba(124,58,237,.12);
+}
+
+.icon{
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+.service h3{
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.service p{
+    color:#888;
+    line-height:1.7;
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills{
+    max-width:800px;
+    margin:auto;
+}
+
+.skill{
+    margin-bottom:25px;
+}
+
+.skill-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.skill-top span:last-child{
+    color:#999;
+}
+
+.bar{
+    height:7px;
+    background:#1b1b24;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,#8b5cf6,#ec4899);
+    border-radius:10px;
+    transition:2s;
+}
+
+/* =========================
+   PORTFOLIO
+========================= */
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+.project{
+    min-height:280px;
+    padding:30px;
+    border:1px solid #222;
+    border-radius:25px;
+    background:linear-gradient(145deg,#11111a,#09090e);
+    position:relative;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.project:hover{
+    transform:scale(1.02);
+    border-color:#8b5cf6;
+}
+
+.project-number{
+    font-size:14px;
+    color:#777;
+}
+
+.project h3{
+    font-size:32px;
+    margin-top:90px;
+}
+
+.project p{
+    color:#888;
+    margin-top:10px;
+}
+
+.project-tag{
+    position:absolute;
+    top:25px;
+    right:25px;
+    padding:7px 12px;
+    border-radius:30px;
+    background:#181822;
+    color:#bbb;
+    font-size:12px;
+}
+
+/* =========================
+   PRICING
+========================= */
+
+.pricing{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.price-card{
+    padding:35px;
+    border:1px solid #222;
+    border-radius:25px;
+    background:#0d0d14;
+    transition:.3s;
+}
+
+.price-card:hover{
+    transform:translateY(-8px);
+}
+
+.price-card.featured{
+    border-color:#8b5cf6;
+    box-shadow:0 20px 70px rgba(124,58,237,.12);
+}
+
+.price-card h3{
+    font-size:20px;
+}
+
+.price{
+    font-size:40px;
+    margin:20px 0;
+}
+
+.price span{
+    color:#777;
+    font-size:14px;
+}
+
+.features{
+    list-style:none;
+    margin:25px 0;
+}
+
+.features li{
+    color:#999;
+    padding:9px 0;
+}
+
+.features li::before{
+    content:"✓";
+    color:#a78bfa;
+    margin-right:10px;
+}
+
+/* =========================
+   WHY ME
+========================= */
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.why{
+    padding:30px;
+    border:1px solid #222;
+    border-radius:20px;
+    background:#0d0d14;
+}
+
+.why h3{
+    margin-bottom:10px;
+}
+
+.why p{
+    color:#888;
+    line-height:1.6;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-box{
+    max-width:850px;
+    margin:auto;
+    padding:60px;
+    text-align:center;
+    border:1px solid #25252d;
+    border-radius:30px;
+    background:linear-gradient(145deg,#11111a,#0b0b12);
+}
+
+.contact-box h2{
+    font-size:clamp(40px,6vw,65px);
+}
+
+.contact-box p{
+    color:#999;
+    line-height:1.7;
+    margin:20px auto 30px;
+    max-width:600px;
+}
+
+.email{
+    display:inline-block;
+    padding:15px 22px;
+    border:1px solid #333;
+    border-radius:50px;
+    color:#c4b5fd;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.email:hover{
+    background:#15151f;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:40px 8%;
+    border-top:1px solid #1c1c23;
+    display:flex;
+    justify-content:space-between;
+    color:#666;
+    font-size:13px;
+}
+
+footer a{
+    color:#aaa;
+}
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   BACK TO TOP
+========================= */
+
+#top{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:1px solid #333;
+    background:#111;
+    color:white;
+    cursor:pointer;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:999;
+}
+
+#top.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    .nav-links{
+        position:absolute;
+        top:75px;
+        left:0;
+        width:100%;
+        background:#0b0b12;
+        flex-direction:column;
+        padding:25px;
+        display:none;
+        text-align:center;
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .stats,
+    .services-grid,
+    .pricing,
+    .why-grid{
+        grid-template-columns:1fr;
+    }
+
+    .projects{
+        grid-template-columns:1fr;
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        letter-spacing:-3px;
+    }
+
+    .contact-box{
+        padding:35px 20px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        SHANAYA<span>.</span>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            ✦ Available for new projects
+        </div>
+
+        <h1>
+            Hi, I'm <span class="gradient">Shanaya.</span>
+        </h1>
+
+        <p>
+            I turn ideas into modern websites, creative digital experiences
+            and engaging videos that people remember.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#work" class="btn primary">
+                View My Work →
+            </a>
+
+            <a href="#contact" class="btn secondary">
+                Let's Work Together
+            </a>
+
+        </div>
+
+        <div class="scroll">
+            SCROLL TO EXPLORE ↓
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section>
+
+<div class="stats reveal">
+
+    <div class="stat">
+        <h3>2+</h3>
+        <p>Projects</p>
+    </div>
+
+    <div class="stat">
+        <h3>100%</h3>
+        <p>Creative</p>
+    </div>
+
+    <div class="stat">
+        <h3>∞</h3>
+        <p>Ideas</p>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="container">
+
+    <div class="section-title reveal">
+        <small>About Me</small>
+        <h2>Creative by nature.</h2>
+    </div>
+
+    <div class="about-grid">
+
+        <div class="about-text reveal">
+
+            <h3>I create things I'm proud to show.</h3>
+
+            <p>
+                I'm Shanaya, a creative web designer and video editor
+                who enjoys turning ideas into visually interesting
+                digital experiences.
+            </p>
+
+            <p>
+                I focus on creating websites that are modern, easy to
+                use and designed to make an impression.
+            </p>
+
+        </div>
+
+        <div class="about-card reveal">
+
+            <h3>IDEA →</h3>
+
+            <p>
+                You bring the idea.
+                I help turn it into something people can see,
+                interact with and remember.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<div class="container">
+
+    <div class="section-title reveal">
+
+        <small>What I Do</small>
+
+        <h2>Services</h2>
+
+        <p>
+            From websites to videos, I create digital work
+            designed around your goals.
+        </p>
+
+    </div>
+
+
+    <div class="services-grid">
+
+        <div class="service reveal">
+
+            <div class="icon">💻</div>
+
+            <h3>Web Design</h3>
+
+            <p>
+                Modern, responsive websites designed to make
+                your brand look professional online.
+            </p>
+
+        </div>
+
+
+        <div class="service reveal">
+
+            <div class="icon">🎬</div>
+
+            <h3>Video Editing</h3>
+
+            <p>
+                Engaging edits for social media, YouTube,
+                businesses and creative projects.
+            </p>
+
+        </div>
+
+
+        <div class="service reveal">
+
+            <div class="icon">✨</div>
+
+            <h3>Creative Projects</h3>
+
+            <p>
+                Unique digital experiences, landing pages
+                and custom creative ideas.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section>
+
+<div class="container">
+
+    <div class="section-title reveal">
+
+        <small>My Skills</small>
+
+        <h2>What I Work With</h2>
+
+    </div>
+
+    <div class="skills">
+
+        <div class="skill reveal">
+
+            <div class="skill-top">
+                <span>Web Design</span>
+                <span>90%</span>
+            </div>
+
+            <div class="bar">
+                <div class="fill" data-width="90%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-top">
+                <span>HTML & CSS</span>
+                <span>85%</span>
+            </div>
+
+            <div class="bar">
+                <div class="fill" data-width="85%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-top">
+                <span>Video Editing</span>
+                <span>80%</span>
+            </div>
+
+            <div class="bar">
+                <div class="fill" data-width="80%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-top">
+                <span>Creative Design</span>
+                <span>95%</span>
+            </div>
+
+            <div class="bar">
+                <div class="fill" data-width="95%"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- WORK -->
+
+<section id="work">
+
+<div class="container">
+
+    <div class="section-title reveal">
+
+        <small>Portfolio</small>
+
+        <h2>Selected Work</h2>
+
+        <p>
+            A few things I've created.
+        </p>
+
+    </div>
+
+
+    <div class="projects">
+
+        <div class="project reveal">
+
+            <span class="project-number">01 / WEB</span>
+
+            <span class="project-tag">Study Website</span>
+
+            <h3>StudyAI</h3>
+
+            <p>
+                An interactive study platform designed
+                to make learning more engaging.
+            </p>
+
+        </div>
+
+
+        <div class="project reveal">
+
+            <span class="project-number">02 / WEB</span>
+
+            <span class="project-tag">Coming Soon</span>
+
+            <h3>Client Project</h3>
+
+            <p>
+                Your next website could appear here.
+            </p>
+
+        </div>
+
+
+        <div class="project reveal">
+
+            <span class="project-number">03 / VIDEO</span>
+
+            <span class="project-tag">Coming Soon</span>
+
+            <h3>Video Edit</h3>
+
+            <p>
+                A place to showcase your best video
+                editing work.
+            </p>
+
+        </div>
+
+
+        <div class="project reveal">
+
+            <span class="project-number">04 / CREATIVE</span>
+
+            <span class="project-tag">Coming Soon</span>
+
+            <h3>Future Project</h3>
+
+            <p>
+                More creative work coming soon.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- WHY ME -->
+
+<section>
+
+<div class="container">
+
+    <div class="section-title reveal">
+
+        <small>Why Work With Me</small>
+
+        <h2>Simple. Creative. Personal.</h2>
+
+    </div>
+
+
+    <div class="why-grid">
+
+        <div class="why reveal">
+
+            <h3>✨ Modern Design</h3>
+
+            <p>
+                I focus on clean layouts, modern visuals
+                and memorable experiences.
+            </p>
+
+        </div>
+
+
+        <div class="why reveal">
+
+            <h3>📱 Responsive</h3>
+
+            <p>
+                Websites are designed to work across
+                phones, tablets and computers.
+            </p>
+
+        </div>
+
+
+        <div class="why reveal">
+
+            <h3>💡 Creative Thinking</h3>
+
+            <p>
+                I don't just build pages. I look for
+                ways to make the experience interesting.
+            </p>
+
+        </div>
+
+
+        <div class="why reveal">
+
+            <h3>🤝 Personal Service</h3>
+
+            <p>
+                Every project gets individual attention
+                instead of feeling like a template.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- PRICING -->
+
+<section id="pricing">
+
+<div class="container">
+
+    <div class="section-title reveal">
+
+        <small>Packages</small>
+
+        <h2>Simple Pricing</h2>
+
+        <p>
+            Starting prices. Every project can be customized.
+        </p>
+
+    </div>
+
+
+    <div class="pricing">
+
+        <div class="price-card reveal">
+
+            <h3>Starter</h3>
+
+            <div class="price">
+                ₹1,999 <span>+</span>
+            </div>
+
+            <ul class="features">
+
+                <li>1–3 pages</li>
+                <li>Responsive design</li>
+                <li>Modern layout</li>
+                <li>Basic animations</li>
+
+            </ul>
+
+            <a href="#contact" class="btn secondary">
+                Get Started
+            </a>
+
+        </div>
+
+
+        <div class="price-card featured reveal">
+
+            <h3>Professional</h3>
+
+            <div class="price">
+                ₹4,999 <span>+</span>
+            </div>
+
+            <ul class="features">
+
+                <li>5+ pages</li>
+                <li>Custom design</li>
+                <li>Animations</li>
+                <li>Mobile optimization</li>
+
+            </ul>
+
+            <a href="#contact" class="btn primary">
+                Get Started
+            </a>
+
+        </div>
+
+
+        <div class="price-card reveal">
+
+            <h3>Custom</h3>
+
+            <div class="price">
+                Let's Talk
+            </div>
+
+            <ul class="features">
+
+                <li>Fully custom website</li>
+                <li>Advanced features</li>
+                <li>Unique design</li>
+                <li>Custom requirements</li>
+
+            </ul>
+
+            <a href="#contact" class="btn secondary">
+                Contact Me
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="contact-box reveal">
+
+    <h2>Have an idea?</h2>
+
+    <p>
+        Whether you need a website, video edit or something
+        completely custom, I'd love to hear about it.
+    </p>
+
+    <a href="mailto:YOUR_EMAIL@gmail.com" class="btn primary">
+        Start a Project →
+    </a>
+
+    <br><br>
+
+    <span class="email" onclick="copyEmail()">
+        📋 YOUR_EMAIL@gmail.com
+    </span>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div>
+        © 2026 Shanaya. All rights reserved.
+    </div>
+
+    <div>
+        Made with ✦ creativity
+    </div>
+
+</footer>
+
+
+<!-- BACK TO TOP -->
+
+<button id="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    ↑
+</button>
+
+
+<script>
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+    document
+    .getElementById("navLinks")
+    .classList.toggle("open");
+
+}
+
+
+/* CLOSE MENU AFTER CLICK */
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        document
+        .getElementById("navLinks")
+        .classList.remove("open");
+
+    });
+
+});
+
+
+/* SCROLL REVEAL */
+
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll(){
+
+    reveals.forEach(element => {
+
+        const windowHeight = window.innerHeight;
+
+        const elementTop = element.getBoundingClientRect().top;
+
+        if(elementTop < windowHeight - 80){
+
+            element.classList.add("active");
+
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
+
+
+/* SKILL BARS */
+
+const fills = document.querySelectorAll(".fill");
+
+function animateSkills(){
+
+    fills.forEach(fill => {
+
+        const top = fill.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 50){
+
+            fill.style.width = fill.dataset.width;
+
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", animateSkills);
+
+animateSkills();
+
+
+/* BACK TO TOP */
+
+window.addEventListener("scroll", () => {
+
+    const button = document.getElementById("top");
+
+    if(window.scrollY > 500){
+
+        button.classList.add("show");
+
+    }else{
+
+        button.classList.remove("show");
+
+    }
+
+});
+
+
+/* COPY EMAIL */
+
+function copyEmail(){
+
+    navigator.clipboard.writeText("YOUR_EMAIL@gmail.com");
+
+    alert("Email copied!");
+
+}
+
+</script>
+
+</body>
+</html>
+```
