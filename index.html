@@ -641,174 +641,422 @@ section{
 }
 
 
-/* ==============================
-   WORK
-============================== */
+```html
+<!-- ==========================
+     WORK
+=========================== -->
 
-.projects{
+<section id="work">
 
-    display:grid;
+<div class="container">
 
-    grid-template-columns:repeat(2,1fr);
 
-    gap:25px;
+<div class="section-title reveal">
 
-}
+<span>Portfolio</span>
 
-.project{
+<h2>My Work</h2>
 
-    min-height:320px;
+<p>
 
-    padding:30px;
+A few projects I've created so far.
 
-    border:1px solid #222;
+</p>
 
-    border-radius:25px;
+</div>
 
-    background:
-    linear-gradient(
-        145deg,
-        #11111a,
-        #09090e
-    );
 
-    position:relative;
+<div class="projects">
 
-    overflow:hidden;
 
-    transition:.4s;
+<!-- ==========================
+     STUDYSPARK AI
+=========================== -->
 
-}
+<div class="project reveal">
 
-.project:hover{
+<div class="project-image">
 
-    transform:translateY(-8px);
+<div style="
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:65px;
+background:linear-gradient(135deg,#17132b,#251746);
+">
 
-    border-color:#8b5cf6;
+🧠
 
-}
+</div>
 
-.project::after{
+</div>
 
-    content:"";
 
-    position:absolute;
+<span class="project-number">
 
-    width:180px;
+01 / WEBSITE
 
-    height:180px;
+</span>
 
-    border-radius:50%;
 
-    background:#7c3aed;
+<span class="project-tag">
 
-    filter:blur(100px);
+Featured
 
-    opacity:.15;
+</span>
 
-    right:-70px;
 
-    bottom:-70px;
+<h3>
 
-}
+StudySpark AI
 
+</h3>
 
-/* PROJECT IMAGE */
 
-.project-image{
+<p>
 
-    width:100%;
+An interactive AI-powered study website
+designed to make learning more engaging
+and easier to explore.
 
-    height:160px;
+</p>
 
-    border-radius:15px;
 
-    overflow:hidden;
+<span class="project-note">
 
-    margin-bottom:20px;
+⚡ Built in just 1 day
 
-    border:1px solid #222;
+</span>
 
-}
 
-.project-image img{
+<br>
+<br>
 
-    width:100%;
 
-    height:100%;
+<a
+href="https://notshanaya7-arch.github.io/studyspark-ai/"
+target="_blank"
+class="btn secondary">
 
-    object-fit:cover;
+View Live Website →
 
-    display:block;
+</a>
 
-    transition:.5s;
 
-}
+</div>
 
-.project:hover .project-image img{
 
-    transform:scale(1.06);
 
-}
+<!-- ==========================
+     LUNA CAFÉ
+=========================== -->
 
+<div class="project reveal">
 
-.project-number{
+<div class="project-image">
 
-    color:#777;
+<div style="
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:65px;
+background:linear-gradient(135deg,#2a211b,#5a4030);
+">
 
-    font-size:13px;
+☕
 
-}
+</div>
 
-.project-tag{
+</div>
 
-    position:absolute;
 
-    right:25px;
+<span class="project-number">
 
-    top:25px;
+02 / WEBSITE
 
-    background:#181822;
+</span>
 
-    padding:7px 12px;
 
-    border-radius:30px;
+<span class="project-tag">
 
-    font-size:11px;
+Featured
 
-    color:#bbb;
+</span>
 
-}
 
-.project h3{
+<h3>
 
-    margin-top:25px;
+Luna Café
 
-    font-size:35px;
+</h3>
 
-}
 
-.project p{
+<p>
 
-    color:#888;
+A modern café website concept with
+a warm and stylish design created to
+give a restaurant a strong online presence.
 
-    line-height:1.6;
+</p>
 
-    margin-top:10px;
 
-}
+<span class="project-note">
 
-.project-note{
+☕ Café Website Concept
 
-    display:inline-block;
+</span>
 
-    margin-top:20px;
 
-    color:#a78bfa;
+<br>
+<br>
 
-    font-size:13px;
 
-}
+<a
+href="https://notshanaya7-arch.github.io/luna-cafe/"
+target="_blank"
+class="btn secondary">
+
+View Live Website →
+
+</a>
+
+
+</div>
+
+
+
+<!-- ==========================
+     VELORA
+=========================== -->
+
+<div class="project reveal">
+
+<div class="project-image">
+
+<div style="
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:65px;
+background:linear-gradient(135deg,#30251f,#71594c);
+">
+
+👗
+
+</div>
+
+</div>
+
+
+<span class="project-number">
+
+03 / WEBSITE
+
+</span>
+
+
+<span class="project-tag">
+
+Featured
+
+</span>
+
+
+<h3>
+
+VELORA
+
+</h3>
+
+
+<p>
+
+A modern fashion e-commerce concept
+with interactive product cards, shopping
+bag functionality and animated sections.
+
+</p>
+
+
+<span class="project-note">
+
+👗 Fashion & E-Commerce
+
+</span>
+
+
+<br>
+<br>
+
+
+<a
+href="https://notshanaya7-arch.github.io/velora-fashion/"
+target="_blank"
+class="btn secondary">
+
+View Live Website →
+
+</a>
+
+
+</div>
+
+
+
+<!-- ==========================
+     PETAL & KNOT
+=========================== -->
+
+<div class="project reveal">
+
+<div class="project-image">
+
+<div style="
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:65px;
+background:linear-gradient(135deg,#3b2430,#8f596b);
+">
+
+🌸
+
+</div>
+
+</div>
+
+
+<span class="project-number">
+
+04 / E-COMMERCE WEBSITE
+
+</span>
+
+
+<span class="project-tag">
+
+Featured
+
+</span>
+
+
+<h3>
+
+Petal & Knot
+
+</h3>
+
+
+<p>
+
+A handmade crochet e-commerce store with
+product browsing, customization options,
+shopping cart, checkout and a custom
+bouquet builder.
+
+</p>
+
+
+<span class="project-note">
+
+🌸 Handmade E-Commerce
+
+</span>
+
+
+<br>
+<br>
+
+
+<a
+href="https://notshanaya7-arch.github.io/petal-and-knot/index.html"
+target="_blank"
+class="btn secondary">
+
+View Live Website →
+
+</a>
+
+
+</div>
+
+
+
+<!-- ==========================
+     MORE PROJECTS
+=========================== -->
+
+<div class="project reveal">
+
+<div class="project-image">
+
+<div style="
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:65px;
+background:linear-gradient(135deg,#11111a,#191922);
+">
+
+＋
+
+</div>
+
+</div>
+
+
+<span class="project-number">
+
+05 / COMING SOON
+
+</span>
+
+
+<span class="project-tag">
+
+Next
+
+</span>
+
+
+<h3>
+
+More Coming Soon
+
+</h3>
+
+
+<p>
+
+I'm constantly building new websites,
+creative projects and experiments.
+This space will keep growing.
+
+</p>
+
+
+<span class="project-note">
+
+🚀 Stay tuned
+
+</span>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+```
+
 
 
 /* ==============================
