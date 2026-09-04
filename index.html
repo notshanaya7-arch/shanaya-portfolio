@@ -1,3956 +1,1283 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Shanaya — Digital Experiences</title>
-
-<meta name="description"
-content="Shanaya creates websites, visual experiences, and digital stories.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
-
-<style>
-
-/* =========================================================
-   COLORS
-========================================================= */
-
-:root{
-    --ink:#11110f;
-    --ink-soft:#171714;
-
-    --paper:#e9e5dc;
-    --paper-light:#f4f1ea;
-
-    --grey:#8b887f;
-    --grey-dark:#615f58;
-
-    --red:#a85a5d;
-    --red-soft:#c27a7c;
-
-    --line:rgba(233,229,220,.13);
-
-    --shadow:
-        0 35px 90px rgba(0,0,0,.35);
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:var(--ink);
-    color:var(--paper);
-    font-family:"Manrope",sans-serif;
-    overflow-x:hidden;
-    cursor:none;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-img{
-    display:block;
-    width:100%;
-}
-
-::selection{
-    background:var(--red);
-    color:var(--paper);
-}
-
-
-/* =========================================================
-   CUSTOM CURSOR
-========================================================= */
-
-.cursor{
-    position:fixed;
-    left:0;
-    top:0;
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:var(--red);
-    pointer-events:none;
-    z-index:9999;
-
-    transform:translate(-50%,-50%);
-
-    transition:
-        width .28s ease,
-        height .28s ease,
-        border-radius .28s ease,
-        background .28s ease;
-}
-
-.cursor::after{
-    content:"";
-
-    position:absolute;
-
-    inset:-6px;
-
-    border:
-        1px solid
-        rgba(168,90,93,.35);
-
-    border-radius:50%;
-}
-
-.cursor.hover{
-    width:54px;
-    height:54px;
-
-    background:var(--paper);
-
-    mix-blend-mode:normal;
-}
-
-.cursor.drag{
-    width:65px;
-    height:65px;
-
-    border-radius:18px;
-
-    background:var(--red);
-
-    mix-blend-mode:normal;
-}
-
-.cursor-label{
-    position:fixed;
-    left:0;
-    top:0;
-
-    pointer-events:none;
-
-    z-index:10000;
-
-    transform:
-        translate(-50%,-50%);
-
-    font:
-        500 8px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.12em;
-
-    color:var(--ink);
-
-    opacity:0;
-
-    transition:opacity .2s ease;
-}
-
-.cursor-label.show{
-    opacity:1;
-}
-
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.intro{
-    position:fixed;
-
-    inset:0;
-
-    background:var(--ink);
-
-    z-index:9000;
-
-    overflow:hidden;
-}
-
-.intro-inner{
-    width:min(1200px,88vw);
-
-    height:100%;
-
-    margin:auto;
-
-    position:relative;
-}
-
-.intro-kicker{
-    position:absolute;
-
-    top:9%;
-    left:0;
-
-    color:var(--grey);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.16em;
-
-    text-transform:uppercase;
-
-    opacity:0;
-
-    animation:
-        fadeIn .7s .2s forwards;
-}
-
-.intro-name{
-    position:absolute;
-
-    top:41%;
-    left:0;
-
-    overflow:hidden;
-
-    font-size:
-        clamp(
-            4.8rem,
-            14vw,
-            12rem
-        );
-
-    line-height:.78;
-
-    letter-spacing:-.1em;
-
-    font-weight:800;
-}
-
-.intro-name span{
-    display:block;
-
-    transform:
-        translateY(115%);
-
-    animation:
-        nameIn 1.05s
-        .55s
-        cubic-bezier(.16,1,.3,1)
-        forwards;
-}
-
-.intro-side{
-    position:absolute;
-
-    right:0;
-    top:45%;
-
-    width:220px;
-
-    opacity:0;
-
-    animation:
-        fadeIn .7s 1.3s forwards;
-}
-
-.intro-side p{
-    color:var(--grey);
-
-    font:
-        400 10px/1.7
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.1em;
-
-    text-transform:uppercase;
-}
-
-.intro-mark{
-    display:block;
-
-    width:72px;
-    height:1px;
-
-    margin-top:25px;
-
-    background:var(--red);
-
-    transform-origin:left;
-
-    transform:scaleX(0);
-
-    animation:
-        grow .7s 1.7s forwards;
-}
-
-.intro-type{
-    position:absolute;
-
-    bottom:17%;
-    left:0;
-
-    color:var(--grey);
-
-    font:
-        400 10px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.12em;
-
-    text-transform:uppercase;
-
-    opacity:0;
-
-    animation:
-        fadeIn .7s 1.8s forwards;
-}
-
-.intro-type strong{
-    color:var(--paper);
-
-    font-weight:500;
-}
-
-.intro-card{
-    position:absolute;
-
-    right:5%;
-    bottom:10%;
-
-    width:230px;
-    height:145px;
-
-    transform:
-        perspective(800px)
-        rotateY(-18deg)
-        rotateX(5deg)
-        rotateZ(-3deg)
-        translateY(30px);
-
-    opacity:0;
-
-    animation:
-        introCardIn 1s
-        2s
-        cubic-bezier(.16,1,.3,1)
-        forwards;
-}
-
-.intro-card img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-
-    box-shadow:
-        0 30px 70px rgba(0,0,0,.4);
-}
-
-.intro-card::after{
-    content:"01 / SELECTED";
-
-    position:absolute;
-
-    left:15px;
-    bottom:12px;
-
-    color:white;
-
-    font:
-        400 8px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.12em;
-
-    text-transform:uppercase;
-}
-
-.intro-line{
-    position:absolute;
-
-    left:0;
-    bottom:0;
-
-    width:100%;
-
-    height:2px;
-
-    background:var(--line);
-}
-
-.intro-line i{
-    display:block;
-
-    width:0;
-
-    height:100%;
-
-    background:var(--red);
-
-    animation:
-        growFull .8s 2.9s forwards;
-}
-
-.intro.exit{
-    animation:
-        introExit .8s
-        3.65s
-        forwards;
-}
-
-@keyframes fadeIn{
-    to{
-        opacity:1;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Shanaya — Digital Experiences</title>
+
+  <meta
+    name="description"
+    content="Shanaya creates websites, visual experiences, and digital stories."
+  >
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;1,500;1,600&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Three.js -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
     }
-}
-
-@keyframes nameIn{
-    to{
-        transform:translateY(0);
-    }
-}
-
-@keyframes grow{
-    to{
-        transform:scaleX(1);
-    }
-}
-
-@keyframes growFull{
-    to{
-        width:100%;
-    }
-}
-
-@keyframes introCardIn{
-    to{
-        opacity:1;
-
-        transform:
-            perspective(800px)
-            rotateY(-12deg)
-            rotateX(2deg)
-            rotateZ(-2deg)
-            translateY(0);
-    }
-}
-
-@keyframes introExit{
-    to{
-        transform:translateY(-100%);
-    }
-}
-
-
-/* =========================================================
-   NAV
-========================================================= */
-
-.nav{
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-
-    padding:
-        23px
-        4vw;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    z-index:2000;
-
-    mix-blend-mode:difference;
-}
-
-.logo{
-    font-size:14px;
-
-    font-weight:800;
-
-    letter-spacing:-.05em;
-}
-
-.nav-links{
-    display:flex;
-
-    gap:25px;
-}
-
-.nav-links a{
-    position:relative;
-
-    color:white;
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.11em;
-
-    text-transform:uppercase;
-}
-
-.nav-links a::after{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    bottom:-5px;
-
-    width:0;
-    height:1px;
-
-    background:currentColor;
-
-    transition:.25s ease;
-}
-
-.nav-links a:hover::after{
-    width:100%;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    min-height:100svh;
-
-    padding:
-        135px
-        5vw
-        55px;
-
-    position:relative;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:space-between;
-
-    overflow:hidden;
-}
-
-.hero-grid{
-    position:absolute;
-
-    inset:0;
-
-    pointer-events:none;
-
-    opacity:.2;
-
-    background:
-
-        linear-gradient(
-            to right,
-            transparent 0,
-            transparent 24.9%,
-            rgba(233,229,220,.05) 25%,
-            transparent 25.1%,
-            transparent 49.9%,
-            rgba(233,229,220,.05) 50%,
-            transparent 50.1%,
-            transparent 74.9%,
-            rgba(233,229,220,.05) 75%,
-            transparent 75.1%
-        );
-}
-
-.hero-top{
-    position:relative;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    color:var(--grey);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.13em;
-
-    text-transform:uppercase;
-}
-
-.hero-copy{
-    position:relative;
-
-    margin-top:12vh;
-}
-
-.eyebrow{
-    margin-bottom:30px;
-
-    color:var(--red-soft);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.15em;
-
-    text-transform:uppercase;
-}
-
-.hero h1{
-    font-size:
-        clamp(
-            4.8rem,
-            13vw,
-            13rem
-        );
-
-    font-weight:800;
-
-    line-height:.76;
-
-    letter-spacing:-.1em;
-}
-
-.hero h1 .line2{
-    display:block;
-
-    margin-left:11vw;
-}
-
-.accent{
-    color:var(--red);
-}
-
-.hero-bottom{
-    position:relative;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:flex-end;
-
-    gap:30px;
-}
-
-.hero-description{
-    max-width:450px;
-
-    color:#b8b4aa;
-
-    font-size:17px;
-
-    line-height:1.55;
-}
-
-.hero-description strong{
-    color:var(--paper);
-}
-
-.hero-scroll{
-    display:flex;
-
-    gap:13px;
-
-    align-items:center;
-
-    color:var(--grey);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.12em;
-
-    text-transform:uppercase;
-}
-
-.scroll-dot{
-    width:6px;
-    height:6px;
-
-    border-radius:50%;
-
-    background:var(--red);
-
-    animation:pulse 1.8s infinite;
-}
-
-@keyframes pulse{
-
-    50%{
-        transform:scale(1.8);
-        opacity:.45;
-    }
-
-}
-
-
-/* =========================================================
-   MARQUEE
-========================================================= */
-
-.marquee{
-    overflow:hidden;
-
-    white-space:nowrap;
-
-    border-top:
-        1px solid var(--line);
-
-    border-bottom:
-        1px solid var(--line);
-
-    padding:18px 0;
-}
-
-.marquee-track{
-    display:inline-flex;
-
-    min-width:max-content;
-
-    gap:50px;
-
-    animation:
-        marquee 24s
-        linear infinite;
-}
-
-.marquee span{
-    color:var(--grey);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.13em;
-
-    text-transform:uppercase;
-}
-
-.marquee b{
-    color:var(--red);
-
-    font-weight:500;
-}
-
-@keyframes marquee{
-
-    to{
-        transform:translateX(-50%);
-    }
-
-}
-
-
-/* =========================================================
-   GENERAL SECTION
-========================================================= */
-
-.section{
-
-    padding:
-        180px
-        5vw;
-
-}
-
-.section-head{
-
-    display:grid;
-
-    grid-template-columns:
-        140px
-        1fr;
-
-    gap:40px;
-
-    margin-bottom:95px;
-}
-
-.section-num{
-
-    padding-top:9px;
-
-    color:var(--red);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.13em;
-}
-
-.section-title{
-
-    font-size:
-        clamp(
-            3.2rem,
-            7.5vw,
-            8rem
-        );
-
-    line-height:.83;
-
-    letter-spacing:-.085em;
-
-    font-weight:800;
-}
-
-.section-title em{
-
-    color:var(--grey);
-
-    font-family:
-        "Playfair Display",
-        serif;
-
-    font-weight:600;
-}
-
-
-/* =========================================================
-   ABOUT
-========================================================= */
-
-.about-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr
-        .9fr;
-
-    gap:8vw;
-
-    border-top:
-        1px solid var(--line);
-
-    padding-top:45px;
-}
-
-.about-big{
-
-    font-size:
-        clamp(
-            1.7rem,
-            3.6vw,
-            3.5rem
-        );
-
-    line-height:1.02;
-
-    letter-spacing:-.05em;
-}
-
-.about-big span{
-    color:var(--red-soft);
-}
-
-.about-small{
-
-    color:var(--grey);
-
-    max-width:450px;
-
-    line-height:1.7;
-
-    font-size:14px;
-}
-
-.about-small p + p{
-    margin-top:25px;
-}
-
-.about-list{
-
-    margin-top:45px;
-
-    border-top:
-        1px solid var(--line);
-}
-
-.about-list div{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    padding:15px 0;
-
-    border-bottom:
-        1px solid var(--line);
-
-    font:
-        400 8px
-        "DM Mono",
-        monospace;
-
-    text-transform:uppercase;
-
-    letter-spacing:.1em;
-}
-
-
-/* =========================================================
-   3D STUDIO
-========================================================= */
-
-.studio{
-
-    position:relative;
-
-    min-height:80vh;
-
-    border-top:
-        1px solid var(--line);
-
-    perspective:1400px;
-
-    overflow:hidden;
-
-    padding-top:50px;
-
-}
-
-.orbit{
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:min(58vw,750px);
-
-    aspect-ratio:1;
-
-    border:
-        1px solid
-        rgba(233,229,220,.08);
-
-    border-radius:50%;
-
-    transform:
-        translate(-50%,-50%)
-        rotateX(62deg);
-
-    pointer-events:none;
-}
-
-.orbit::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:14%;
-
-    border:
-        1px solid
-        rgba(168,90,93,.18);
-
-    border-radius:50%;
-}
-
-.core{
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:100px;
-    height:100px;
-
-    transform:
-        translate(-50%,-50%)
-        translateZ(110px);
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle at 30% 30%,
-            #cf8587,
-            #7f4447 66%,
-            #281718
-        );
-
-    box-shadow:
-        0 0 70px
-        rgba(168,90,93,.2);
-
-    animation:
-        coreFloat 5s ease-in-out infinite;
-}
-
-@keyframes coreFloat{
-
-    50%{
-
-        transform:
-            translate(-50%,-54%)
-            translateZ(150px)
-            scale(1.07);
-
-    }
-
-}
-
-.three-card{
-
-    --mx:0px;
-    --my:0px;
-    --rx:0deg;
-    --ry:0deg;
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:min(54vw,650px);
-
-    transform:
-
-        translate(-50%,-50%)
-
-        translate3d(
-            var(--mx),
-            var(--my),
-            100px
-        )
-
-        rotateX(var(--rx))
-        rotateY(var(--ry));
-
-    transition:
-        transform .25s ease;
-
-    transform-style:preserve-3d;
-}
-
-.three-frame{
-
-    position:relative;
-
-    padding:9px;
-
-    background:#d7d2c7;
-
-    box-shadow:
-        var(--shadow);
-}
-
-.three-screen{
-
-    overflow:hidden;
-
-    aspect-ratio:
-        16/10;
-
-    background:#0b0b09;
-}
-
-.three-screen img{
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-}
-
-.three-frame::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:14px;
-    right:-18px;
-    bottom:-18px;
-
-    height:100%;
-
-    border:
-        1px solid
-        rgba(168,90,93,.2);
-
-    transform:
-        translateZ(-28px);
-
-    pointer-events:none;
-}
-
-.three-tag{
-
-    position:absolute;
-
-    top:28px;
-    right:-52px;
-
-    padding:
-        9px
-        11px;
-
-    background:var(--paper);
-
-    color:var(--ink);
-
-    font:
-        500 8px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.1em;
-
-    text-transform:uppercase;
-
-    transform:
-        translateZ(38px);
-}
-
-.three-caption{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-top:16px;
-}
-
-.three-caption strong{
-
-    font-size:24px;
-
-    letter-spacing:-.05em;
-}
-
-.three-caption span{
-
-    align-self:center;
-
-    color:var(--grey);
-
-    font:
-        400 8px
-        "DM Mono",
-        monospace;
-
-    text-transform:uppercase;
-
-    letter-spacing:.08em;
-}
-
-.stage-note{
-
-    position:absolute;
-
-    bottom:30px;
-    left:0;
-
-    color:var(--grey);
-
-    font:
-        400 8px/1.6
-        "DM Mono",
-        monospace;
-
-    text-transform:uppercase;
-
-    letter-spacing:.1em;
-}
-
-
-/* =========================================================
-   WORK
-========================================================= */
-
-.case{
-
-    padding:
-        80px
-        0
-        140px;
-
-    border-top:
-        1px solid var(--line);
-}
-
-.case-top{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-bottom:27px;
-
-    color:var(--grey);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.1em;
-
-    text-transform:uppercase;
-}
-
-.case-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        1.15fr
-        .85fr;
-
-    gap:7vw;
-
-    align-items:end;
-}
-
-.case-visual{
-
-    position:relative;
-
-    perspective:1200px;
-}
-
-.case-card{
-
-    padding:9px;
-
-    background:#d6d1c7;
-
-    box-shadow:var(--shadow);
-
-    transform:
-        rotateY(-7deg)
-        rotateX(2deg);
-
-    transition:
-        transform .8s
-        cubic-bezier(.16,1,.3,1);
-}
-
-.case:hover .case-card{
-
-    transform:
-        rotateY(0)
-        rotateX(0)
-        translateY(-8px);
-
-}
-
-.case-card img{
-
-    width:100%;
-
-    aspect-ratio:16/10;
-
-    object-fit:cover;
-}
-
-.case-stamp{
-
-    position:absolute;
-
-    right:-15px;
-
-    bottom:24px;
-
-    padding:
-        10px
-        12px;
-
-    background:var(--red);
-
-    color:var(--paper);
-
-    font:
-        500 8px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.1em;
-
-    text-transform:uppercase;
-
-    transform:rotate(-4deg);
-}
-
-.case-copy h3{
-
-    font-size:
-        clamp(
-            3rem,
-            6vw,
-            6.5rem
-        );
-
-    line-height:.82;
-
-    letter-spacing:-.08em;
-}
-
-.case-copy h3 em{
-
-    color:var(--red-soft);
-
-    font-family:
-        "Playfair Display",
-        serif;
-}
-
-.case-copy p{
-
-    margin-top:28px;
-
-    max-width:430px;
-
-    color:var(--grey);
-
-    font-size:14px;
-
-    line-height:1.7;
-}
-
-.case-link{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    margin-top:35px;
-
-    padding-bottom:8px;
-
-    border-bottom:
-        1px solid
-        var(--grey);
-
-    font:
-        500 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.11em;
-
-    text-transform:uppercase;
-}
-
-.case-link i{
-
-    font-style:normal;
-
-    color:var(--red);
-
-    transition:
-        transform .3s ease;
-}
-
-.case-link:hover i{
-
-    transform:
-        translate(5px,-5px);
-}
-
-
-/* Alternate layouts */
-
-.case:nth-of-type(even)
-.case-grid{
-
-    grid-template-columns:
-        .85fr
-        1.15fr;
-}
-
-.case:nth-of-type(even)
-.case-visual{
-
-    order:2;
-}
-
-.case:nth-of-type(even)
-.case-copy{
-
-    order:1;
-}
-
-
-/* =========================================================
-   SERVICES
-========================================================= */
-
-.service-row{
-
-    display:grid;
-
-    grid-template-columns:
-        80px
-        1fr
-        1fr
-        auto;
-
-    gap:30px;
-
-    align-items:start;
-
-    padding:
-        45px
-        0;
-
-    border-bottom:
-        1px solid var(--line);
-
-    transition:
-        padding .4s ease;
-}
-
-.service-row:hover{
-
-    padding-left:22px;
-    padding-right:22px;
-}
-
-.service-row .num{
-
-    color:var(--red);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-}
-
-.service-row h3{
-
-    font-size:
-        clamp(
-            2rem,
-            3.5vw,
-            3.8rem
-        );
-
-    letter-spacing:-.06em;
-}
-
-.service-row p{
-
-    max-width:370px;
-
-    color:var(--grey);
-
-    line-height:1.6;
-
-    font-size:14px;
-}
-
-.service-price{
-
-    color:var(--red-soft);
-
-    font-size:19px;
-}
-
-
-/* =========================================================
-   PRICING
-========================================================= */
-
-.pricing-list{
-
-    border-top:
-        1px solid var(--line);
-}
-
-.price-row{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr
-        1fr
-        150px;
-
-    gap:30px;
-
-    align-items:center;
-
-    padding:
-        34px 0;
-
-    border-bottom:
-        1px solid var(--line);
-}
-
-.price-name{
-
-    font-size:
-        clamp(
-            1.6rem,
-            3vw,
-            2.8rem
-        );
-
-    letter-spacing:-.05em;
-}
-
-.price-detail{
-
-    color:var(--grey);
-
-    font:
-        400 9px/1.7
-        "DM Mono",
-        monospace;
-
-    text-transform:uppercase;
-
-    letter-spacing:.08em;
-}
-
-.price-value{
-
-    text-align:right;
-
-    color:var(--red-soft);
-
-    font-size:20px;
-}
-
-
-/* =========================================================
-   WHY
-========================================================= */
-
-.why-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:1px;
-
-    background:var(--line);
-
-    border:
-        1px solid
-        var(--line);
-}
-
-.why-card{
-
-    min-height:290px;
-
-    background:var(--ink);
-
-    padding:
-        35px
-        28px;
-}
-
-.why-card .num{
-
-    color:var(--red);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-}
-
-.why-card h3{
-
-    margin-top:85px;
-
-    font-size:29px;
-
-    letter-spacing:-.05em;
-}
-
-.why-card p{
-
-    margin-top:16px;
-
-    color:var(--grey);
-
-    line-height:1.6;
-
-    font-size:13px;
-}
-
-
-/* =========================================================
-   FAQ
-========================================================= */
-
-.faq{
-
-    border-top:
-        1px solid var(--line);
-}
-
-.faq-item{
-
-    padding:
-        31px 0;
-
-    border-bottom:
-        1px solid var(--line);
-}
-
-.faq-question{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    font-size:21px;
-
-    letter-spacing:-.03em;
-
-    cursor:none;
-}
-
-.faq-plus{
-
-    color:var(--red);
-
-    font:
-        300 28px
-        "DM Mono",
-        monospace;
-
-    transition:
-        transform .3s ease;
-}
-
-.faq-answer{
-
-    max-height:0;
-
-    overflow:hidden;
-
-    max-width:680px;
-
-    color:var(--grey);
-
-    line-height:1.7;
-
-    font-size:14px;
-
-    transition:
-        max-height .5s ease,
-        margin-top .5s ease;
-}
-
-.faq-item.open .faq-answer{
-
-    max-height:180px;
-
-    margin-top:18px;
-}
-
-.faq-item.open .faq-plus{
-
-    transform:rotate(45deg);
-}
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contact{
-
-    min-height:95svh;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    position:relative;
-
-    overflow:hidden;
-}
-
-.contact::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:50vw;
-    height:50vw;
-
-    right:-15vw;
-    bottom:-25vw;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(168,90,93,.13),
-            transparent 68%
-        );
-
-    pointer-events:none;
-}
-
-.contact-label{
-
-    color:var(--red);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.15em;
-
-    text-transform:uppercase;
-}
-
-.contact h2{
-
-    position:relative;
-
-    z-index:1;
-
-    margin-top:38px;
-
-    font-size:
-        clamp(
-            4rem,
-            11vw,
-            12rem
-        );
-
-    line-height:.76;
-
-    letter-spacing:-.1em;
-}
-
-.contact h2 span{
-
-    display:block;
-
-    margin-left:12vw;
-
-    color:var(--grey);
-}
-
-.contact-line{
-
-    width:min(760px,80vw);
-
-    height:1px;
-
-    background:var(--line);
-
-    margin-top:78px;
-}
-
-.contact-email{
-
-    width:max-content;
-
-    margin-top:30px;
-
-    padding-bottom:9px;
-
-    border-bottom:
-        1px solid
-        var(--grey);
-
-    font-size:
-        clamp(
-            1.2rem,
-            2vw,
-            2.2rem
-        );
-}
-
-.contact-links{
-
-    display:flex;
-
-    gap:28px;
-
-    margin-top:27px;
-
-    color:var(--grey);
-
-    font:
-        400 9px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.11em;
-
-    text-transform:uppercase;
-}
-
-.contact-links a:hover{
-
-    color:var(--paper);
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    padding:
-        25px 5vw
-        35px;
-
-    border-top:
-        1px solid var(--line);
-
-    color:var(--grey);
-
-    font:
-        400 8px
-        "DM Mono",
-        monospace;
-
-    letter-spacing:.1em;
-
-    text-transform:uppercase;
-}
-
-
-/* =========================================================
-   REVEAL
-========================================================= */
-
-.reveal{
-
-    opacity:0;
-
-    transform:
-        translateY(50px);
-
-    transition:
-        opacity .9s ease,
-        transform 1s
-        cubic-bezier(.16,1,.3,1);
-}
-
-.reveal.visible{
-
-    opacity:1;
-
-    transform:none;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:900px){
-
-    body{
-        cursor:auto;
-    }
-
-    .cursor,
-    .cursor-label{
-        display:none;
-    }
-
-    .nav{
-        padding:20px;
-    }
-
-    .nav-links{
-        gap:14px;
-    }
-
-    .nav-links a{
-        font-size:8px;
-    }
-
-    .hero{
-        padding:
-            120px
-            20px
-            45px;
-    }
-
-    .hero h1{
-        font-size:22vw;
-    }
-
-    .hero h1 .line2{
-        margin-left:0;
-    }
-
-    .hero-bottom{
-        flex-direction:column;
-
-        align-items:flex-start;
-    }
-
-    .hero-description{
-        font-size:16px;
-    }
-
-    .section{
-        padding:
-            120px
-            20px;
-    }
-
-    .section-head{
-        grid-template-columns:1fr;
-
-        gap:18px;
-
-        margin-bottom:70px;
-    }
-
-    .section-title{
-        font-size:16vw;
-    }
-
-    .about-grid{
-        grid-template-columns:1fr;
-        gap:60px;
-    }
-
-    .studio{
-        min-height:65vh;
-    }
-
-    .orbit{
-        width:100vw;
-    }
-
-    .three-card{
-        width:86vw;
-    }
-
-    .three-tag{
-        right:10px;
-        top:10px;
-    }
-
-    .three-caption strong{
-        font-size:18px;
-    }
-
-    .stage-note{
-        display:none;
-    }
-
-    .case{
-        padding:
-            70px 0
-            100px;
-    }
-
-    .case-grid,
-    .case:nth-of-type(even) .case-grid{
-
-        grid-template-columns:1fr;
-
-        gap:45px;
-    }
-
-    .case:nth-of-type(even) .case-visual{
-        order:1;
-    }
-
-    .case:nth-of-type(even) .case-copy{
-        order:2;
-    }
-
-    .case-copy h3{
-        font-size:17vw;
-    }
-
-    .service-row{
-
-        grid-template-columns:
-            35px
-            1fr;
-
-        gap:18px;
-    }
-
-    .service-row p{
-        grid-column:2;
-    }
-
-    .service-price{
-        grid-column:2;
-    }
-
-    .price-row{
-
-        grid-template-columns:
-            1fr
-            110px;
-    }
-
-    .price-detail{
-
-        grid-column:1;
-        grid-row:2;
-    }
-
-    .price-value{
-
-        grid-column:2;
-        grid-row:1;
-    }
-
-    .why-grid{
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .why-card{
-        min-height:250px;
-    }
-
-    .why-card h3{
-        margin-top:55px;
-    }
-
-    .contact h2 span{
-        margin-left:0;
-    }
-
-    .contact-email{
-        font-size:17px;
-    }
-
-    .intro-side{
-        display:none;
-    }
-
-    .intro-card{
-
-        width:180px;
-        height:115px;
-
-        right:0;
-
-        bottom:17%;
-    }
-
-    .intro-name{
-        top:44%;
-
-        font-size:23vw;
-    }
-}
-
-@media(max-width:560px){
-
-    .nav-links a:nth-child(3){
-        display:none;
-    }
-
-    .hero-top{
-        font-size:8px;
-    }
-
-    .why-grid{
-        grid-template-columns:1fr;
-    }
-
-    .why-card{
-        min-height:220px;
-    }
-
-    .contact-links{
-        gap:18px;
-    }
-
-}
-
-</style>
-   <link rel="stylesheet" href="style.css">
-<script type="module" src="script.js"></script>
+  }
+  </script>
+
+  <!-- Main JavaScript -->
+  <script type="module" src="script.js"></script>
 </head>
-
 
 <body>
 
+  <!-- =====================================================
+       LOADING SCREEN
+  ====================================================== -->
 
-<!-- =====================================================
-     CURSOR
-===================================================== -->
+  <div class="loader" id="loader">
 
-<div class="cursor"></div>
-<div class="cursor-label">VIEW</div>
+    <div class="loader-inner">
 
+      <div class="loader-top">
+        <span>SHANAYA®</span>
+        <span>3D EXPERIENCE</span>
+      </div>
 
-<!-- =====================================================
-     INTRO
-===================================================== -->
-
-<div class="intro">
-
-    <div class="intro-inner">
-
-        <div class="intro-kicker">
-            Independent creative developer
+      <div class="loader-center">
+        <div class="loader-title">
+          DIGITAL<br>
+          EXPERIENCES.
         </div>
 
-        <div class="intro-name">
-            <span>SHANAYA</span>
+        <div class="loader-progress">
+          <div class="loader-progress-bar" id="loaderProgress"></div>
         </div>
 
-        <div class="intro-side">
-
-            <p>
-                Web<br>
-                Visual<br>
-                Digital
-            </p>
-
-            <i class="intro-mark"></i>
-
+        <div class="loader-status" id="loaderStatus">
+          INITIALIZING EXPERIENCE
         </div>
+      </div>
 
-        <div class="intro-type">
-            A SMALL STUDIO FOR
-            <strong>BIG IDEAS</strong>
-        </div>
-
-        <div class="intro-card">
-
-            <img
-                src="assets/project-1-cropped.png"
-                alt="Petal & Knot project"
-            >
-
-        </div>
-
-        <div class="intro-line">
-            <i></i>
-        </div>
+      <div class="loader-bottom">
+        <span>INDIA</span>
+        <span>WORLDWIDE</span>
+        <span>2026</span>
+      </div>
 
     </div>
 
-</div>
+  </div>
 
 
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
+  <!-- =====================================================
+       CUSTOM CURSOR
+  ====================================================== -->
 
-<nav class="nav">
+  <div class="cursor" id="cursor">
+    <span></span>
+  </div>
+
+
+  <!-- =====================================================
+       THREE.JS CANVAS
+       This is the REAL 3D layer.
+  ====================================================== -->
+
+  <canvas
+    id="webgl"
+    aria-hidden="true"
+  ></canvas>
+
+
+  <!-- =====================================================
+       3D HUD
+  ====================================================== -->
+
+  <div class="scene-hud">
+
+    <div class="hud-top-left">
+      <span class="hud-dot"></span>
+      <span>REAL-TIME 3D</span>
+    </div>
+
+    <div class="hud-top-right">
+      <span id="sceneLabel">SHANAYA / 001</span>
+    </div>
+
+    <div class="hud-bottom-left">
+      <span>SCROLL TO EXPLORE</span>
+    </div>
+
+    <div class="hud-bottom-right">
+      <span id="sceneProgress">01 / 05</span>
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       NAVIGATION
+  ====================================================== -->
+
+  <header class="nav">
 
     <a
-        href="#top"
-        class="logo"
-        data-cursor="HOME"
+      href="#top"
+      class="nav-logo"
+      data-cursor-text="HOME"
     >
-        SHANAYA®
+      SHANAYA<sup>®</sup>
     </a>
 
-    <div class="nav-links">
+    <nav class="nav-links">
 
-        <a
-            href="#work"
-            data-cursor="WORK"
-        >
-            Work
-        </a>
+      <a href="#work" data-cursor-text="WORK">
+        WORK
+      </a>
 
-        <a
-            href="#about"
-            data-cursor="INFO"
-        >
-            About
-        </a>
+      <a href="#about" data-cursor-text="ABOUT">
+        ABOUT
+      </a>
 
-        <a
-            href="#services"
-            data-cursor="SERVICES"
-        >
-            Services
-        </a>
+      <a href="#services" data-cursor-text="SERVICES">
+        SERVICES
+      </a>
 
-        <a
-            href="#contact"
-            data-cursor="CONTACT"
-        >
-            Contact
-        </a>
+      <a href="#contact" data-cursor-text="CONTACT">
+        CONTACT
+      </a>
 
-    </div>
+    </nav>
 
-</nav>
+    <a
+      href="#contact"
+      class="nav-availability"
+      data-cursor-text="HELLO"
+    >
+      <span class="availability-dot"></span>
+      AVAILABLE
+    </a>
+
+  </header>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
 
-<main id="top">
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero">
-
-    <div class="hero-grid"></div>
-
-    <div class="hero-top">
-
-        <span>
-            Independent creative studio
-        </span>
-
-        <span>
-            India / Worldwide
-        </span>
-
-    </div>
+  <main id="top">
 
 
-    <div class="hero-copy reveal">
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
 
-        <div class="eyebrow">
-            Web / Visual / Digital
+    <section
+      class="hero scene-section"
+      data-scene="0"
+    >
+
+      <div class="hero-content">
+
+        <div class="hero-kicker reveal">
+          INDEPENDENT CREATIVE STUDIO
         </div>
 
-        <h1>
+        <h1 class="hero-title reveal">
 
-            IDEAS
+          <span>IDEAS</span>
 
-            <span class="line2">
+          <span class="hero-title-italic">
+            INTO
+          </span>
 
-                INTO
-
-                <span class="accent">
-                    EXPERIENCES.
-                </span>
-
-            </span>
+          <span>EXPERIENCES.</span>
 
         </h1>
 
-    </div>
+        <div class="hero-description reveal">
+
+          <p>
+            Shanaya creates websites, visual experiences,
+            and digital stories.
+          </p>
+
+          <div class="hero-meta">
+
+            <span>INDIA</span>
+            <span>WORLDWIDE</span>
+
+          </div>
+
+        </div>
+
+      </div>
 
 
-    <div class="hero-bottom reveal">
+      <div class="hero-bottom reveal">
 
-        <p class="hero-description">
-
-            I build
-            <strong>
-                websites, visual stories
-                and digital experiences
-            </strong>
-
-            that feel considered,
-            memorable and a little different.
-
-        </p>
-
+        <div class="hero-services">
+          <span>WEB</span>
+          <span>VISUAL</span>
+          <span>DIGITAL</span>
+        </div>
 
         <div class="hero-scroll">
+          <span>SCROLL</span>
+          <span class="scroll-line"></span>
+        </div>
 
-            <span class="scroll-dot"></span>
+      </div>
 
-            Scroll to explore
+    </section>
+
+
+    <!-- ===================================================
+         MARQUEE
+    ==================================================== -->
+
+    <section class="marquee-section">
+
+      <div class="marquee">
+
+        <div class="marquee-track">
+
+          <span>WEB DESIGN</span>
+          <i>✦</i>
+
+          <span>CREATIVE DEVELOPMENT</span>
+          <i>✦</i>
+
+          <span>VISUAL STORIES</span>
+          <i>✦</i>
+
+          <span>INTERACTIVE EXPERIENCES</span>
+          <i>✦</i>
+
+          <span>WEB DESIGN</span>
+          <i>✦</i>
+
+          <span>CREATIVE DEVELOPMENT</span>
+          <i>✦</i>
+
+          <span>VISUAL STORIES</span>
+          <i>✦</i>
+
+          <span>INTERACTIVE EXPERIENCES</span>
+          <i>✦</i>
 
         </div>
 
-    </div>
+      </div>
 
-</section>
-
-
-<!-- =====================================================
-     MARQUEE
-===================================================== -->
-
-<div class="marquee">
-
-    <div class="marquee-track">
-
-        <span>
-            WEB DESIGN <b>✦</b>
-        </span>
-
-        <span>
-            CREATIVE DEVELOPMENT <b>✦</b>
-        </span>
-
-        <span>
-            VISUAL STORIES <b>✦</b>
-        </span>
-
-        <span>
-            INTERACTIVE EXPERIENCES <b>✦</b>
-        </span>
-
-        <span>
-            WEB DESIGN <b>✦</b>
-        </span>
-
-        <span>
-            CREATIVE DEVELOPMENT <b>✦</b>
-        </span>
-
-        <span>
-            VISUAL STORIES <b>✦</b>
-        </span>
-
-        <span>
-            INTERACTIVE EXPERIENCES <b>✦</b>
-        </span>
-
-    </div>
-
-</div>
+    </section>
 
 
-<!-- =====================================================
-     ABOUT
-===================================================== -->
+    <!-- ===================================================
+         ABOUT
+    ==================================================== -->
 
-<section
-    class="section"
-    id="about"
->
+    <section
+      class="section about-section scene-section"
+      id="about"
+      data-scene="1"
+    >
 
-    <div class="section-head reveal">
+      <div class="section-label reveal">
+        <span>01</span>
+        <span>ABOUT</span>
+      </div>
 
-        <div class="section-num">
-            01 / ABOUT
-        </div>
+      <div class="about-layout">
 
-        <h2 class="section-title">
+        <div class="about-heading reveal">
 
-            I MAKE THE<br>
+          <p class="eyebrow">
+            A SMALL STUDIO WITH BIG INTENTIONS.
+          </p>
 
-            <em>
-                DETAILS
-            </em>
-
+          <h2>
+            I MAKE THE
+            <em>DETAILS</em>
             MATTER.
+          </h2>
 
-        </h2>
-
-    </div>
-
-
-    <div class="about-grid">
-
-        <p class="about-big reveal">
-
-            A website shouldn't only
-            <span>work.</span>
-
-            It should have
-            a feeling.
-
-        </p>
+        </div>
 
 
-        <div class="about-small reveal">
+        <div class="about-copy reveal">
 
-            <p>
+          <p class="large-copy">
+            Good design should feel effortless.
+            Great design should make you stop.
+          </p>
 
-                I'm Shanaya — a creative developer
-                working across websites, visual design,
-                video and digital experiences.
+          <p>
+            I build digital experiences that balance
+            personality, clarity and visual storytelling.
+            From landing pages to complete websites,
+            every element has a reason to exist.
+          </p>
 
-            </p>
+          <p>
+            My approach combines clean typography,
+            thoughtful interaction and a strong visual
+            point of view.
+          </p>
 
-            <p>
+          <div class="about-facts">
 
-                I like clean ideas, strong typography,
-                thoughtful motion and tiny details
-                that make people stop and look twice.
-
-            </p>
-
-
-            <div class="about-list">
-
-                <div>
-                    <span>Focus</span>
-                    <span>Web / Visual / Digital</span>
-                </div>
-
-                <div>
-                    <span>Style</span>
-                    <span>Minimal / Experimental</span>
-                </div>
-
-                <div>
-                    <span>Base</span>
-                    <span>India / Worldwide</span>
-                </div>
-
+            <div>
+              <span>FOCUS</span>
+              <strong>WEB + VISUAL</strong>
             </div>
 
+            <div>
+              <span>STYLE</span>
+              <strong>EDITORIAL + MODERN</strong>
+            </div>
+
+            <div>
+              <span>BASE</span>
+              <strong>INDIA</strong>
+            </div>
+
+          </div>
+
         </div>
 
-    </div>
+      </div>
 
-</section>
-
-
-<!-- =====================================================
-     3D STUDIO
-===================================================== -->
-
-<section class="section">
-
-    <div class="section-head reveal">
-
-        <div class="section-num">
-            02 / 3D STUDIO
-        </div>
-
-        <h2 class="section-title">
-
-            WORK,
-
-            <br>
-
-            BUT
-            <em>
-                IN MOTION.
-            </em>
-
-        </h2>
-
-    </div>
+    </section>
 
 
-    <div
-        class="studio reveal"
-        id="studio"
+    <!-- ===================================================
+         3D STUDIO
+    ==================================================== -->
+
+    <section
+      class="studio-section scene-section"
+      id="studio"
+      data-scene="2"
     >
 
-        <div class="orbit"></div>
+      <div class="studio-content">
 
-        <div class="core"></div>
+        <div class="section-label reveal">
+          <span>02</span>
+          <span>THE STUDIO</span>
+        </div>
 
+        <div class="studio-title reveal">
 
-        <div
-            class="three-card"
-            id="threeCard"
-        >
+          <p class="eyebrow">
+            BUILT FOR THE SCREEN.
+          </p>
 
-            <div class="three-frame">
-
-                <div class="three-screen">
-
-                    <img
-                        src="assets/project-1-cropped.png"
-                        alt="Petal & Knot"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="three-tag">
-                Petal & Knot
-            </div>
-
-
-            <div class="three-caption">
-
-                <strong>
-                    Petal & Knot
-                </strong>
-
-                <span>
-                    Craft / Lifestyle
-                </span>
-
-            </div>
+          <h2>
+            DESIGN
+            <em>IN</em>
+            MOTION.
+          </h2>
 
         </div>
 
+        <div class="studio-description reveal">
 
-        <div class="stage-note">
+          <p>
+            This portfolio uses a real-time 3D scene
+            to turn the work itself into an experience.
+          </p>
 
-            Move your cursor
-            across the scene.<br>
+          <div class="studio-specs">
 
-            The depth reacts to you.
+            <span>WEBGL</span>
+            <span>THREE.JS</span>
+            <span>INTERACTION</span>
+
+          </div>
 
         </div>
 
-    </div>
-
-</section>
+      </div>
 
 
-<!-- =====================================================
-     SELECTED WORK
-===================================================== -->
+      <div class="studio-model-label">
+        <span>LIVE OBJECT</span>
+        <span id="modelName">3D MODEL / LOADING</span>
+      </div>
 
-<section
-    class="section"
-    id="work"
->
+    </section>
 
-    <div class="section-head reveal">
 
-        <div class="section-num">
-            03 / SELECTED WORK
-        </div>
+    <!-- ===================================================
+         WORK
+    ==================================================== -->
 
-        <h2 class="section-title">
+    <section
+      class="section work-section scene-section"
+      id="work"
+      data-scene="3"
+    >
 
-            THE THINGS
+      <div class="section-label reveal">
+        <span>03</span>
+        <span>SELECTED WORK</span>
+      </div>
 
-            <br>
+      <div class="work-intro reveal">
 
-            I'VE
-            <em>
-                MADE.
-            </em>
-
+        <h2>
+          A FEW THINGS
+          <em>I'VE BUILT.</em>
         </h2>
 
-    </div>
+        <p>
+          A selection of websites and digital experiences
+          created with different personalities, audiences
+          and goals in mind.
+        </p>
 
+      </div>
 
-    <!-- PETAL -->
 
-    <article class="case reveal">
+      <!-- ===============================================
+           PROJECT 01
+      ================================================ -->
 
-        <div class="case-top">
+      <article
+        class="project-card reveal"
+        data-project="0"
+      >
 
-            <span>
-                01 / 04
-            </span>
+        <div class="project-info">
 
-            <span>
-                Craft / Lifestyle / E-commerce
-            </span>
-
-        </div>
-
-
-        <div class="case-grid">
-
-            <div class="case-visual">
-
-                <a
-                    href="https://notshanaya7-arch.github.io/petal-and-knot/index.html"
-                    target="_blank"
-                    class="project-target"
-                    data-cursor="OPEN"
-                >
-
-                    <div class="case-card">
-
-                        <img
-                            src="assets/project-1-cropped.png"
-                            alt="Petal & Knot website"
-                        >
-
-                    </div>
-
-                </a>
-
-
-                <div class="case-stamp">
-                    LIVE PROJECT
-                </div>
-
-            </div>
-
-
-            <div class="case-copy">
-
-                <h3>
-
-                    Petal &
-
-                    <br>
-
-                    <em>
-                        Knot.
-                    </em>
-
-                </h3>
-
-
-                <p>
-
-                    A warm handmade brand experience
-                    built around softness, storytelling
-                    and a tactile visual identity.
-
-                </p>
-
-
-                <a
-                    href="https://notshanaya7-arch.github.io/petal-and-knot/index.html"
-                    target="_blank"
-                    class="case-link project-target"
-                    data-cursor="OPEN"
-                >
-
-                    View project
-
-                    <i>
-                        ↗
-                    </i>
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <!-- STUDYSPARK -->
-
-    <article class="case reveal">
-
-        <div class="case-top">
-
-            <span>
-                02 / 04
-            </span>
-
-            <span>
-                Education / AI / Product
-            </span>
-
-        </div>
-
-
-        <div class="case-grid">
-
-            <div class="case-visual">
-
-                <a
-                    href="https://notshanaya7-arch.github.io/studyspark-ai/"
-                    target="_blank"
-                    class="project-target"
-                    data-cursor="OPEN"
-                >
-
-                    <div class="case-card">
-
-                        <img
-                            src="assets/project-2-cropped.png"
-                            alt="StudySpark AI website"
-                        >
-
-                    </div>
-
-                </a>
-
-
-                <div class="case-stamp">
-                    LIVE PROJECT
-                </div>
-
-            </div>
-
-
-            <div class="case-copy">
-
-                <h3>
-
-                    StudySpark
-
-                    <br>
-
-                    <em>
-                        AI.
-                    </em>
-
-                </h3>
-
-
-                <p>
-
-                    A bright learning experience
-                    designed to turn study material
-                    into something interactive
-                    and approachable.
-
-                </p>
-
-
-                <a
-                    href="https://notshanaya7-arch.github.io/studyspark-ai/"
-                    target="_blank"
-                    class="case-link project-target"
-                    data-cursor="OPEN"
-                >
-
-                    View project
-
-                    <i>
-                        ↗
-                    </i>
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <!-- LUNA -->
-
-    <article class="case reveal">
-
-        <div class="case-top">
-
-            <span>
-                03 / 04
-            </span>
-
-            <span>
-                Hospitality / Brand / Café
-            </span>
-
-        </div>
-
-
-        <div class="case-grid">
-
-            <div class="case-visual">
-
-                <a
-                    href="https://notshanaya7-arch.github.io/luna-cafe/"
-                    target="_blank"
-                    class="project-target"
-                    data-cursor="OPEN"
-                >
-
-                    <div class="case-card">
-
-                        <img
-                            src="assets/project-3-cropped.png"
-                            alt="Luna Café website"
-                        >
-
-                    </div>
-
-                </a>
-
-
-                <div class="case-stamp">
-                    LIVE PROJECT
-                </div>
-
-            </div>
-
-
-            <div class="case-copy">
-
-                <h3>
-
-                    Luna
-
-                    <br>
-
-                    <em>
-                        Café.
-                    </em>
-
-                </h3>
-
-
-                <p>
-
-                    A cinematic café identity
-                    with a darker palette,
-                    oversized typography
-                    and calm editorial rhythm.
-
-                </p>
-
-
-                <a
-                    href="https://notshanaya7-arch.github.io/luna-cafe/"
-                    target="_blank"
-                    class="case-link project-target"
-                    data-cursor="OPEN"
-                >
-
-                    View project
-
-                    <i>
-                        ↗
-                    </i>
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <!-- VELORA -->
-
-    <article class="case reveal">
-
-        <div class="case-top">
-
-            <span>
-                04 / 04
-            </span>
-
-            <span>
-                Fashion / E-commerce / Editorial
-            </span>
-
-        </div>
-
-
-        <div class="case-grid">
-
-            <div class="case-visual">
-
-                <a
-                    href="https://notshanaya7-arch.github.io/velora-fashion/"
-                    target="_blank"
-                    class="project-target"
-                    data-cursor="OPEN"
-                >
-
-                    <div class="case-card">
-
-                        <img
-                            src="assets/project-4-cropped.png"
-                            alt="VELORA website"
-                        >
-
-                    </div>
-
-                </a>
-
-
-                <div class="case-stamp">
-                    LIVE PROJECT
-                </div>
-
-            </div>
-
-
-            <div class="case-copy">
-
-                <h3>
-
-                    VELORA
-
-                    <br>
-
-                    <em>
-                        Fashion.
-                    </em>
-
-                </h3>
-
-
-                <p>
-
-                    A clean storefront focused
-                    on typography, confidence,
-                    product presentation
-                    and editorial spacing.
-
-                </p>
-
-
-                <a
-                    href="https://notshanaya7-arch.github.io/velora-fashion/"
-                    target="_blank"
-                    class="case-link project-target"
-                    data-cursor="OPEN"
-                >
-
-                    View project
-
-                    <i>
-                        ↗
-                    </i>
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </article>
-
-</section>
-
-
-<!-- =====================================================
-     SERVICES
-===================================================== -->
-
-<section
-    class="section"
-    id="services"
->
-
-    <div class="section-head reveal">
-
-        <div class="section-num">
-            04 / SERVICES
-        </div>
-
-        <h2 class="section-title">
-
-            WHAT I
-
-            <br>
-
-            <em>
-                DO.
-            </em>
-
-        </h2>
-
-    </div>
-
-
-    <div class="service-row reveal">
-
-        <div class="num">
+          <div class="project-number">
             01
+          </div>
+
+          <div class="project-details">
+
+            <p class="project-category">
+              CRAFT / LIFESTYLE / E-COMMERCE
+            </p>
+
+            <h3>
+              Petal & Knot
+            </h3>
+
+            <p class="project-description">
+              A warm handmade brand experience built around
+              softness, storytelling and a tactile visual identity.
+            </p>
+
+            <a
+              class="project-link"
+              href="https://notshanaya7-arch.github.io/petal-and-knot/index.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor-text="OPEN"
+            >
+              <span>VIEW PROJECT</span>
+              <span>↗</span>
+            </a>
+
+          </div>
+
         </div>
 
-        <h3>
-            Websites
-        </h3>
 
-        <p>
+        <div class="project-visual">
 
-            Custom websites with strong
-            layouts, responsive design,
-            motion and a clear visual identity.
+          <div class="project-frame">
 
-        </p>
+            <img
+              src="assets/project-1-cropped.png"
+              alt="Petal and Knot website preview"
+              loading="lazy"
+            >
 
-        <div class="service-price">
-            ₹1,999+
+            <div class="project-frame-overlay"></div>
+
+            <div class="project-frame-label">
+              PETAL & KNOT
+            </div>
+
+          </div>
+
         </div>
 
-    </div>
+      </article>
 
 
-    <div class="service-row reveal">
+      <!-- ===============================================
+           PROJECT 02
+      ================================================ -->
 
-        <div class="num">
+      <article
+        class="project-card reverse reveal"
+        data-project="1"
+      >
+
+        <div class="project-info">
+
+          <div class="project-number">
             02
+          </div>
+
+          <div class="project-details">
+
+            <p class="project-category">
+              EDUCATION / AI / PRODUCT
+            </p>
+
+            <h3>
+              StudySpark AI
+            </h3>
+
+            <p class="project-description">
+              A bright learning experience designed to turn
+              study material into something interactive
+              and approachable.
+            </p>
+
+            <a
+              class="project-link"
+              href="https://notshanaya7-arch.github.io/studyspark-ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor-text="OPEN"
+            >
+              <span>VIEW PROJECT</span>
+              <span>↗</span>
+            </a>
+
+          </div>
+
         </div>
 
-        <h3>
-            Video
-        </h3>
 
-        <p>
+        <div class="project-visual">
 
-            Short-form edits, clean pacing,
-            transitions and visual polish
-            for social content.
+          <div class="project-frame">
 
-        </p>
+            <img
+              src="assets/project-2-cropped.png"
+              alt="StudySpark AI website preview"
+              loading="lazy"
+            >
 
-        <div class="service-price">
-            ₹250
+            <div class="project-frame-overlay"></div>
+
+            <div class="project-frame-label">
+              STUDYSPARK AI
+            </div>
+
+          </div>
+
         </div>
 
-    </div>
+      </article>
 
 
-    <div class="service-row reveal">
+      <!-- ===============================================
+           PROJECT 03
+      ================================================ -->
 
-        <div class="num">
+      <article
+        class="project-card reveal"
+        data-project="2"
+      >
+
+        <div class="project-info">
+
+          <div class="project-number">
             03
-        </div>
+          </div>
 
-        <h3>
-            Thumbnails
-        </h3>
+          <div class="project-details">
 
-        <p>
-
-            Scroll-stopping thumbnail
-            design with readable composition
-            and strong visual hierarchy.
-
-        </p>
-
-        <div class="service-price">
-            ₹250
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     PRICING
-===================================================== -->
-
-<section
-    class="section"
-    id="pricing"
->
-
-    <div class="section-head reveal">
-
-        <div class="section-num">
-            05 / PRICING
-        </div>
-
-        <h2 class="section-title">
-
-            NO
-
-            <br>
-
-            <em>
-                GUESSWORK.
-            </em>
-
-        </h2>
-
-    </div>
-
-
-    <div class="pricing-list reveal">
-
-        <div class="price-row">
-
-            <div class="price-name">
-                Website
-            </div>
-
-            <div class="price-detail">
-                Custom page /
-                Responsive /
-                Animations
-            </div>
-
-            <div class="price-value">
-                ₹1,999+
-            </div>
-
-        </div>
-
-
-        <div class="price-row">
-
-            <div class="price-name">
-                Video Edit
-            </div>
-
-            <div class="price-detail">
-                Short-form /
-                Cuts /
-                Transitions
-            </div>
-
-            <div class="price-value">
-                ₹250
-            </div>
-
-        </div>
-
-
-        <div class="price-row">
-
-            <div class="price-name">
-                Thumbnail
-            </div>
-
-            <div class="price-detail">
-                Custom Design /
-                Social Ready
-            </div>
-
-            <div class="price-value">
-                ₹250
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     WHY
-===================================================== -->
-
-<section class="section">
-
-    <div class="section-head reveal">
-
-        <div class="section-num">
-            06 / WHY ME
-        </div>
-
-        <h2 class="section-title">
-
-            A SMALL
-
-            <br>
-
-            <em>
-                DIFFERENCE.
-            </em>
-
-        </h2>
-
-    </div>
-
-
-    <div class="why-grid">
-
-
-        <div class="why-card reveal">
-
-            <div class="num">
-                01
-            </div>
-
-            <h3>
-                Affordable.
-            </h3>
-
-            <p>
-                Professional-looking work
-                without agency-level pricing.
+            <p class="project-category">
+              HOSPITALITY / BRAND / CAFÉ
             </p>
 
-        </div>
-
-
-        <div class="why-card reveal">
-
-            <div class="num">
-                02
-            </div>
-
             <h3>
-                Fast.
+              Luna Café
             </h3>
 
-            <p>
-                Focused builds so ideas
-                don't spend forever sitting around.
+            <p class="project-description">
+              A cinematic café identity with a darker palette,
+              oversized typography and calm editorial rhythm.
             </p>
+
+            <a
+              class="project-link"
+              href="https://notshanaya7-arch.github.io/luna-cafe/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor-text="OPEN"
+            >
+              <span>VIEW PROJECT</span>
+              <span>↗</span>
+            </a>
+
+          </div>
 
         </div>
 
 
-        <div class="why-card reveal">
+        <div class="project-visual">
 
-            <div class="num">
-                03
+          <div class="project-frame">
+
+            <img
+              src="assets/project-3-cropped.png"
+              alt="Luna Cafe website preview"
+              loading="lazy"
+            >
+
+            <div class="project-frame-overlay"></div>
+
+            <div class="project-frame-label">
+              LUNA CAFÉ
             </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- ===============================================
+           PROJECT 04
+      ================================================ -->
+
+      <article
+        class="project-card reverse reveal"
+        data-project="3"
+      >
+
+        <div class="project-info">
+
+          <div class="project-number">
+            04
+          </div>
+
+          <div class="project-details">
+
+            <p class="project-category">
+              FASHION / E-COMMERCE / EDITORIAL
+            </p>
 
             <h3>
-                Creative.
+              VELORA Fashion
             </h3>
 
-            <p>
-                I care about details that keep
-                your site from feeling generic.
+            <p class="project-description">
+              A clean storefront focused on typography,
+              confidence, product presentation and
+              editorial spacing.
             </p>
 
-        </div>
+            <a
+              class="project-link"
+              href="https://notshanaya7-arch.github.io/velora-fashion/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor-text="OPEN"
+            >
+              <span>VIEW PROJECT</span>
+              <span>↗</span>
+            </a>
 
-
-        <div class="why-card reveal">
-
-            <div class="num">
-                04
-            </div>
-
-            <h3>
-                Personal.
-            </h3>
-
-            <p>
-                You work directly with me
-                from idea to launch.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     FAQ
-===================================================== -->
-
-<section class="section">
-
-    <div class="section-head reveal">
-
-        <div class="section-num">
-            07 / FAQ
-        </div>
-
-        <h2 class="section-title">
-
-            YOU ASK.
-
-            <br>
-
-            <em>
-                I ANSWER.
-            </em>
-
-        </h2>
-
-    </div>
-
-
-    <div class="faq">
-
-
-        <div class="faq-item reveal">
-
-            <div class="faq-question">
-
-                <span>
-                    How long does a website take?
-                </span>
-
-                <span class="faq-plus">
-                    +
-                </span>
-
-            </div>
-
-            <div class="faq-answer">
-
-                Simple websites can be built
-                quickly. Bigger builds depend
-                on the number of pages, content
-                and functionality involved.
-
-            </div>
+          </div>
 
         </div>
 
 
-        <div class="faq-item reveal">
+        <div class="project-visual">
 
-            <div class="faq-question">
+          <div class="project-frame">
 
-                <span>
-                    Can you build the website
-                    from scratch?
-                </span>
+            <img
+              src="assets/project-4-cropped.png"
+              alt="VELORA Fashion website preview"
+              loading="lazy"
+            >
 
-                <span class="faq-plus">
-                    +
-                </span>
+            <div class="project-frame-overlay"></div>
 
+            <div class="project-frame-label">
+              VELORA
             </div>
 
-            <div class="faq-answer">
-
-                Yes. I can shape the layout,
-                visual direction, front-end code
-                and animations around your idea.
-
-            </div>
+          </div>
 
         </div>
 
-
-        <div class="faq-item reveal">
-
-            <div class="faq-question">
-
-                <span>
-                    Can I request changes?
-                </span>
-
-                <span class="faq-plus">
-                    +
-                </span>
-
-            </div>
-
-            <div class="faq-answer">
-
-                Yes. The point is to refine
-                the project until the final
-                direction feels right.
-
-            </div>
-
-        </div>
+      </article>
 
 
-        <div class="faq-item reveal">
-
-            <div class="faq-question">
-
-                <span>
-                    How do I start a project?
-                </span>
-
-                <span class="faq-plus">
-                    +
-                </span>
-
-            </div>
-
-            <div class="faq-answer">
-
-                Send a message with what you
-                want to build, the style you like,
-                and what the site needs to do.
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+    </section>
 
 
-<!-- =====================================================
-     CONTACT
-===================================================== -->
+    <!-- ===================================================
+         SERVICES
+    ==================================================== -->
 
-<section
-    class="section contact"
-    id="contact"
->
-
-    <div class="contact-label">
-        08 / LET'S WORK
-    </div>
-
-
-    <h2 class="reveal">
-
-        MAKE SOMETHING
-
-        <span>
-            IMPOSSIBLE TO IGNORE.
-        </span>
-
-    </h2>
-
-
-    <div class="contact-line reveal"></div>
-
-
-    <a
-        href="mailto:email-notshanaya@gmail.com"
-        class="contact-email reveal project-target"
-        data-cursor="MAIL"
+    <section
+      class="section services-section scene-section"
+      id="services"
+      data-scene="4"
     >
 
-        email-notshanaya@gmail.com
+      <div class="section-label reveal">
+        <span>04</span>
+        <span>SERVICES</span>
+      </div>
 
-    </a>
+      <div class="services-heading reveal">
+
+        <p class="eyebrow">
+          WHAT I CAN BUILD FOR YOU.
+        </p>
+
+        <h2>
+          SIMPLE.
+          <em>USEFUL.</em>
+          MEMORABLE.
+        </h2>
+
+      </div>
 
 
-    <div class="contact-links reveal">
+      <div class="services-list">
 
-        <a
+        <div class="service-row reveal">
+
+          <div class="service-number">
+            01
+          </div>
+
+          <div class="service-name">
+            WEBSITES
+          </div>
+
+          <div class="service-description">
+            Landing pages, portfolios, business websites
+            and custom digital experiences.
+          </div>
+
+          <div class="service-price">
+            ₹1,999+
+          </div>
+
+        </div>
+
+
+        <div class="service-row reveal">
+
+          <div class="service-number">
+            02
+          </div>
+
+          <div class="service-name">
+            VIDEO
+          </div>
+
+          <div class="service-description">
+            Short-form edits, social content,
+            promotional visuals and creative cuts.
+          </div>
+
+          <div class="service-price">
+            ₹250
+          </div>
+
+        </div>
+
+
+        <div class="service-row reveal">
+
+          <div class="service-number">
+            03
+          </div>
+
+          <div class="service-name">
+            THUMBNAILS
+          </div>
+
+          <div class="service-description">
+            Scroll-stopping thumbnails designed
+            for clarity and clicks.
+          </div>
+
+          <div class="service-price">
+            ₹250
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PRICING -->
+
+      <div class="pricing-block reveal">
+
+        <div class="pricing-label">
+          STARTING PRICES
+        </div>
+
+        <div class="pricing-grid">
+
+          <div class="pricing-item">
+
+            <span>WEBSITE</span>
+
+            <strong>
+              ₹1,999+
+            </strong>
+
+          </div>
+
+          <div class="pricing-item">
+
+            <span>VIDEO</span>
+
+            <strong>
+              ₹250
+            </strong>
+
+          </div>
+
+          <div class="pricing-item">
+
+            <span>THUMBNAIL</span>
+
+            <strong>
+              ₹250
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- WHY ME -->
+
+      <div class="why-section">
+
+        <div class="why-title reveal">
+
+          <p class="eyebrow">
+            WHY WORK WITH ME?
+          </p>
+
+          <h2>
+            SMALL STUDIO.
+            <em>PERSONAL</em>
+            ATTENTION.
+          </h2>
+
+        </div>
+
+
+        <div class="why-grid">
+
+          <div class="why-item reveal">
+
+            <span>01</span>
+
+            <h3>
+              AFFORDABLE
+            </h3>
+
+            <p>
+              Professional-looking digital work
+              without agency-level pricing.
+            </p>
+
+          </div>
+
+
+          <div class="why-item reveal">
+
+            <span>02</span>
+
+            <h3>
+              FAST
+            </h3>
+
+            <p>
+              Focused projects with a clear process
+              and quick communication.
+            </p>
+
+          </div>
+
+
+          <div class="why-item reveal">
+
+            <span>03</span>
+
+            <h3>
+              CREATIVE
+            </h3>
+
+            <p>
+              Every project gets its own visual
+              direction instead of a generic template.
+            </p>
+
+          </div>
+
+
+          <div class="why-item reveal">
+
+            <span>04</span>
+
+            <h3>
+              PERSONAL
+            </h3>
+
+            <p>
+              You work directly with me from
+              the first idea to the final result.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         FAQ
+    ==================================================== -->
+
+    <section class="section faq-section">
+
+      <div class="section-label reveal">
+        <span>05</span>
+        <span>FAQ</span>
+      </div>
+
+      <div class="faq-heading reveal">
+
+        <p class="eyebrow">
+          BEFORE WE START.
+        </p>
+
+        <h2>
+          QUESTIONS,
+          <em>ANSWERED.</em>
+        </h2>
+
+      </div>
+
+
+      <div class="faq-list">
+
+
+        <div class="faq-item reveal">
+
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+          >
+
+            <span>
+              How long does a website take?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Most smaller websites can be completed
+              within a few days depending on the number
+              of pages, content and revisions required.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="faq-item reveal">
+
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+          >
+
+            <span>
+              Can I request a completely custom design?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Yes. I can create the visual direction
+              around your brand, audience and goals
+              instead of using a generic template.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="faq-item reveal">
+
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+          >
+
+            <span>
+              Can you make changes after the first version?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Yes. Revisions can be discussed during
+              the project so the final result feels right.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="faq-item reveal">
+
+          <button
+            class="faq-question"
+            type="button"
+            aria-expanded="false"
+          >
+
+            <span>
+              How do I start a project?
+            </span>
+
+            <span class="faq-icon">
+              +
+            </span>
+
+          </button>
+
+          <div class="faq-answer">
+
+            <p>
+              Send me a message with what you need,
+              what your business or project is about,
+              and any references you already have.
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         CONTACT
+    ==================================================== -->
+
+    <section
+      class="contact-section scene-section"
+      id="contact"
+      data-scene="5"
+    >
+
+      <div class="contact-inner">
+
+        <div class="section-label reveal">
+          <span>06</span>
+          <span>CONTACT</span>
+        </div>
+
+
+        <div class="contact-heading reveal">
+
+          <p class="eyebrow">
+            HAVE AN IDEA?
+          </p>
+
+          <h2>
+            LET'S MAKE
+            <em>SOMETHING.</em>
+          </h2>
+
+        </div>
+
+
+        <div class="contact-links reveal">
+
+          <a
             href="mailto:email-notshanaya@gmail.com"
-        >
-            Email
-        </a>
+            class="contact-link"
+            data-cursor-text="EMAIL"
+          >
 
-        <a
+            <span>
+              EMAIL
+            </span>
+
+            <strong>
+              email-notshanaya@gmail.com
+            </strong>
+
+            <span>
+              ↗
+            </span>
+
+          </a>
+
+
+          <a
             href="https://www.instagram.com/pixelpetal67/"
             target="_blank"
-        >
-            Instagram
-        </a>
+            rel="noopener noreferrer"
+            class="contact-link"
+            data-cursor-text="INSTAGRAM"
+          >
+
+            <span>
+              INSTAGRAM
+            </span>
+
+            <strong>
+              @pixelpetal67
+            </strong>
+
+            <span>
+              ↗
+            </span>
+
+          </a>
+
+        </div>
+
+
+        <div class="contact-note reveal">
+
+          <p>
+            Tell me what you're building,
+            what you need and when you need it.
+          </p>
+
+          <span>
+            I'LL TAKE IT FROM THERE.
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer class="footer">
+
+    <div class="footer-top">
+
+      <span>
+        SHANAYA®
+      </span>
+
+      <span>
+        DIGITAL EXPERIENCES
+      </span>
 
     </div>
 
-</section>
 
+    <div class="footer-bottom">
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+      <span>
+        © 2026 SHANAYA
+      </span>
 
-<footer>
+      <span>
+        BUILT WITH INTENTION.
+      </span>
 
-    <span>
-        © 2026 Shanaya
-    </span>
+      <a
+        href="#top"
+        data-cursor-text="TOP"
+      >
+        BACK TO TOP ↑
+      </a>
 
-    <span>
-        Built with intention.
-    </span>
+    </div>
 
-</footer>
+  </footer>
 
 
-</main>
+  <!-- =====================================================
+       NOSCRIPT
+  ====================================================== -->
 
+  <noscript>
 
-<script>
+    <div class="noscript-message">
+      This portfolio uses JavaScript for its interactive
+      3D experience. Please enable JavaScript to view it.
+    </div>
 
-/* =========================================================
-   INTRO EXIT
-========================================================= */
+  </noscript>
 
-setTimeout(()=>{
-
-    const intro =
-        document.querySelector(".intro");
-
-    if(intro){
-
-        intro.classList.add("exit");
-
-    }
-
-},100);
-
-
-/* =========================================================
-   CURSOR
-========================================================= */
-
-const cursor =
-    document.querySelector(".cursor");
-
-const cursorLabel =
-    document.querySelector(".cursor-label");
-
-let mouseX =
-    window.innerWidth / 2;
-
-let mouseY =
-    window.innerHeight / 2;
-
-let currentX =
-    mouseX;
-
-let currentY =
-    mouseY;
-
-
-window.addEventListener(
-    "mousemove",
-    event => {
-
-        mouseX = event.clientX;
-
-        mouseY = event.clientY;
-
-    }
-);
-
-
-function animateCursor(){
-
-    currentX +=
-        (mouseX - currentX) * .18;
-
-    currentY +=
-        (mouseY - currentY) * .18;
-
-
-    cursor.style.left =
-        currentX + "px";
-
-    cursor.style.top =
-        currentY + "px";
-
-
-    cursorLabel.style.left =
-        currentX + "px";
-
-    cursorLabel.style.top =
-        currentY + "px";
-
-
-    requestAnimationFrame(
-        animateCursor
-    );
-
-}
-
-animateCursor();
-
-
-/* =========================================================
-   CURSOR INTERACTIONS
-========================================================= */
-
-document
-    .querySelectorAll("[data-cursor]")
-    .forEach(element => {
-
-        element.addEventListener(
-            "mouseenter",
-            ()=>{
-
-                cursor.classList.add(
-                    "hover"
-                );
-
-                cursorLabel.textContent =
-                    element.dataset.cursor;
-
-                cursorLabel.classList.add(
-                    "show"
-                );
-
-            }
-        );
-
-
-        element.addEventListener(
-            "mouseleave",
-            ()=>{
-
-                cursor.classList.remove(
-                    "hover"
-                );
-
-                cursorLabel.classList.remove(
-                    "show"
-                );
-
-            }
-        );
-
-    });
-
-
-/* =========================================================
-   CLICK SOUND
-========================================================= */
-
-let audioContext = null;
-
-function playClick(){
-
-    try{
-
-        if(!audioContext){
-
-            audioContext =
-                new (
-                    window.AudioContext ||
-                    window.webkitAudioContext
-                )();
-
-        }
-
-        if(
-            audioContext.state ===
-            "suspended"
-        ){
-
-            audioContext.resume();
-
-        }
-
-
-        const oscillator =
-            audioContext.createOscillator();
-
-        const gain =
-            audioContext.createGain();
-
-
-        oscillator.type =
-            "sine";
-
-
-        oscillator.frequency.setValueAtTime(
-            620,
-            audioContext.currentTime
-        );
-
-
-        oscillator.frequency.exponentialRampToValueAtTime(
-            250,
-            audioContext.currentTime + .075
-        );
-
-
-        gain.gain.setValueAtTime(
-            .0001,
-            audioContext.currentTime
-        );
-
-
-        gain.gain.exponentialRampToValueAtTime(
-            .018,
-            audioContext.currentTime + .008
-        );
-
-
-        gain.gain.exponentialRampToValueAtTime(
-            .0001,
-            audioContext.currentTime + .08
-        );
-
-
-        oscillator.connect(gain);
-
-        gain.connect(
-            audioContext.destination
-        );
-
-
-        oscillator.start();
-
-        oscillator.stop(
-            audioContext.currentTime + .09
-        );
-
-    }
-
-    catch(error){
-
-        /* Sound isn't essential,
-           so silently ignore
-           browser restrictions. */
-
-    }
-
-}
-
-
-document.addEventListener(
-    "pointerdown",
-    playClick,
-    {passive:true}
-);
-
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-const revealObserver =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(
-                entry => {
-
-                    if(
-                        entry.isIntersecting
-                    ){
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                    }
-
-                }
-            );
-
-        },
-        {
-            threshold:.12
-        }
-    );
-
-
-document
-    .querySelectorAll(".reveal")
-    .forEach(
-        element =>
-            revealObserver.observe(element)
-    );
-
-
-/* =========================================================
-   FAQ
-========================================================= */
-
-document
-    .querySelectorAll(".faq-item")
-    .forEach(item => {
-
-        item.addEventListener(
-            "click",
-            ()=>{
-
-                const wasOpen =
-                    item.classList.contains(
-                        "open"
-                    );
-
-
-                document
-                    .querySelectorAll(
-                        ".faq-item"
-                    )
-                    .forEach(
-                        faq =>
-                            faq.classList.remove(
-                                "open"
-                            )
-                    );
-
-
-                if(!wasOpen){
-
-                    item.classList.add(
-                        "open"
-                    );
-
-                }
-
-            }
-        );
-
-    });
-
-
-/* =========================================================
-   3D MOUSE DEPTH
-========================================================= */
-
-const studio =
-    document.querySelector(
-        "#studio"
-    );
-
-const card =
-    document.querySelector(
-        "#threeCard"
-    );
-
-if(studio && card){
-
-    studio.addEventListener(
-        "mousemove",
-        event => {
-
-            const rect =
-                studio.getBoundingClientRect();
-
-
-            const x =
-                (event.clientX -
-                    rect.left) /
-                    rect.width -
-                .5;
-
-
-            const y =
-                (event.clientY -
-                    rect.top) /
-                    rect.height -
-                .5;
-
-
-            card.style.setProperty(
-                "--mx",
-                (x * 45) + "px"
-            );
-
-
-            card.style.setProperty(
-                "--my",
-                (y * 30) + "px"
-            );
-
-
-            card.style.setProperty(
-                "--rx",
-                (y * -7) + "deg"
-            );
-
-
-            card.style.setProperty(
-                "--ry",
-                (x * 9) + "deg"
-            );
-
-        }
-    );
-
-
-    studio.addEventListener(
-        "mouseleave",
-        ()=>{
-
-            card.style.setProperty(
-                "--mx",
-                "0px"
-            );
-
-            card.style.setProperty(
-                "--my",
-                "0px"
-            );
-
-            card.style.setProperty(
-                "--rx",
-                "0deg"
-            );
-
-            card.style.setProperty(
-                "--ry",
-                "0deg"
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PROJECT IMAGE PARALLAX
-========================================================= */
-
-window.addEventListener(
-    "scroll",
-    ()=>{
-
-        document
-            .querySelectorAll(
-                ".case-card img"
-            )
-            .forEach(image => {
-
-                const box =
-                    image
-                        .parentElement
-                        .parentElement
-                        .getBoundingClientRect();
-
-
-                const distance =
-                    box.top -
-                    window.innerHeight / 2;
-
-
-                const movement =
-                    distance * -.018;
-
-
-                image.style.transform =
-                    `translateY(${movement}px)`;
-
-            });
-
-    },
-    {passive:true}
-);
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-if(
-    window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches
-){
-
-    document
-        .querySelectorAll(".reveal")
-        .forEach(
-            element =>
-                element.classList.add(
-                    "visible"
-                )
-        );
-
-}
-
-</script>
 
 </body>
 </html>
-```
