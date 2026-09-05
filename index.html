@@ -35,6 +35,35 @@
 
   <!-- Main JavaScript -->
   <script type="module" src="script.js"></script>
+
+<style>
+/* NEXUS FEATURED PROJECT — PREMIUM POLISH */
+.nexus-featured {
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,.14);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding-top: clamp(28px,4vw,56px);
+  padding-bottom: clamp(28px,4vw,56px);
+}
+.nexus-featured::before {
+  content:""; position:absolute; inset:8% -5% auto; height:60%; pointer-events:none;
+  background:radial-gradient(circle, rgba(126,91,255,.16), transparent 65%); filter:blur(30px); z-index:-1;
+}
+.nexus-live-badge { display:inline-flex; align-items:center; gap:9px; margin-bottom:18px; padding:7px 11px; border:1px solid rgba(120,255,170,.28); border-radius:999px; font:600 10px/1 "DM Mono",monospace; letter-spacing:.12em; color:#b8ffd0; background:rgba(90,255,150,.05); }
+.nexus-live-badge i { width:6px; height:6px; border-radius:50%; background:#63ff9b; box-shadow:0 0 12px #63ff9b; animation:nexusPulse 1.8s ease-in-out infinite; }
+@keyframes nexusPulse {50%{opacity:.35;transform:scale(.7)} }
+.nexus-tech { display:flex; flex-wrap:wrap; gap:7px; margin:20px 0 24px; }
+.nexus-tech span { padding:7px 9px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.025); border-radius:4px; font:500 9px/1 "DM Mono",monospace; letter-spacing:.08em; opacity:.78; }
+.nexus-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:22px; max-width:620px; }
+.nexus-stat { padding:13px 14px; border:1px solid rgba(255,255,255,.09); background:rgba(255,255,255,.025); }
+.nexus-stat span { display:block; font:500 8px/1.2 "DM Mono",monospace; letter-spacing:.13em; opacity:.5; margin-bottom:7px; }
+.nexus-stat strong { font:600 11px/1.2 "DM Mono",monospace; letter-spacing:.06em; }
+.nexus-visual .project-frame { overflow:hidden; }
+.nexus-visual img { transition:transform .8s cubic-bezier(.2,.7,.2,1), filter .8s ease; filter:saturate(.92) contrast(1.03); }
+.nexus-featured:hover .nexus-visual img { transform:scale(1.035); filter:saturate(1.08) contrast(1.06); }
+@media(max-width:700px){ .nexus-stats{grid-template-columns:1fr;} .nexus-tech{margin-bottom:18px;} }
+</style>
+
 </head>
 
 <body>
@@ -451,11 +480,11 @@
 
 
       <!-- ===============================================
-           PROJECT 01
+           PROJECT 01 — NEXUS
       ================================================ -->
 
       <article
-        class="project-card reveal"
+        class="project-card nexus-featured reveal"
         data-project="0"
       >
 
@@ -467,49 +496,63 @@
 
           <div class="project-details">
 
+            <div class="nexus-live-badge"><i></i> LIVE INTERACTIVE PROJECT</div>
+
             <p class="project-category">
-              CRAFT / LIFESTYLE / E-COMMERCE
+              GAMING / PRODUCT / 3D EXPERIENCE
             </p>
 
             <h3>
-              Petal & Knot
+              NEXUS
             </h3>
 
             <p class="project-description">
-              A warm handmade brand experience built around
-              softness, storytelling and a tactile visual identity.
+              A futuristic gaming hub designed as a complete digital experience — combining game discovery, quests, leaderboards and progression into one immersive interface.
             </p>
+
+            <div class="nexus-tech">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JAVASCRIPT</span>
+              <span>THREE.JS</span>
+              <span>GAME LOGIC</span>
+            </div>
 
             <a
               class="project-link"
-              href="https://notshanaya7-arch.github.io/petal-and-knot/index.html"
+              href="https://notshanaya7-arch.github.io/NEXUS/"
               target="_blank"
               rel="noopener noreferrer"
-              data-cursor-text="OPEN"
+              data-cursor-text="PLAY"
             >
-              <span>VIEW PROJECT</span>
+              <span>PLAY NEXUS</span>
               <span>↗</span>
             </a>
+
+            <div class="nexus-stats">
+              <div class="nexus-stat"><span>EXPERIENCE</span><strong>3D + MOTION</strong></div>
+              <div class="nexus-stat"><span>FORMAT</span><strong>WEB GAME HUB</strong></div>
+              <div class="nexus-stat"><span>STATUS</span><strong>LIVE</strong></div>
+            </div>
 
           </div>
 
         </div>
 
-
-        <div class="project-visual">
+        <div class="project-visual nexus-visual">
 
           <div class="project-frame">
 
             <img
-              src="assets/project-1-cropped.png"
-              alt="Petal and Knot website preview"
+              src="assets/project-5-cropped.png"
+              alt="NEXUS gaming website preview"
               loading="lazy"
             >
 
             <div class="project-frame-overlay"></div>
 
             <div class="project-frame-label">
-              PETAL & KNOT
+              NEXUS / GAMING EXPERIENCE
             </div>
 
           </div>
@@ -517,216 +560,6 @@
         </div>
 
       </article>
-
-
-      <!-- ===============================================
-           PROJECT 02
-      ================================================ -->
-
-      <article
-        class="project-card reverse reveal"
-        data-project="1"
-      >
-
-        <div class="project-info">
-
-          <div class="project-number">
-            02
-          </div>
-
-          <div class="project-details">
-
-            <p class="project-category">
-              EDUCATION / AI / PRODUCT
-            </p>
-
-            <h3>
-              StudySpark AI
-            </h3>
-
-            <p class="project-description">
-              A bright learning experience designed to turn
-              study material into something interactive
-              and approachable.
-            </p>
-
-            <a
-              class="project-link"
-              href="https://notshanaya7-arch.github.io/studyspark-ai/"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor-text="OPEN"
-            >
-              <span>VIEW PROJECT</span>
-              <span>↗</span>
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <div class="project-visual">
-
-          <div class="project-frame">
-
-            <img
-              src="assets/project-2-cropped.png"
-              alt="StudySpark AI website preview"
-              loading="lazy"
-            >
-
-            <div class="project-frame-overlay"></div>
-
-            <div class="project-frame-label">
-              STUDYSPARK AI
-            </div>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- ===============================================
-           PROJECT 03
-      ================================================ -->
-
-      <article
-        class="project-card reveal"
-        data-project="2"
-      >
-
-        <div class="project-info">
-
-          <div class="project-number">
-            03
-          </div>
-
-          <div class="project-details">
-
-            <p class="project-category">
-              HOSPITALITY / BRAND / CAFÉ
-            </p>
-
-            <h3>
-              Luna Café
-            </h3>
-
-            <p class="project-description">
-              A cinematic café identity with a darker palette,
-              oversized typography and calm editorial rhythm.
-            </p>
-
-            <a
-              class="project-link"
-              href="https://notshanaya7-arch.github.io/luna-cafe/"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor-text="OPEN"
-            >
-              <span>VIEW PROJECT</span>
-              <span>↗</span>
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <div class="project-visual">
-
-          <div class="project-frame">
-
-            <img
-              src="assets/project-3-cropped.png"
-              alt="Luna Cafe website preview"
-              loading="lazy"
-            >
-
-            <div class="project-frame-overlay"></div>
-
-            <div class="project-frame-label">
-              LUNA CAFÉ
-            </div>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- ===============================================
-           PROJECT 04
-      ================================================ -->
-
-      <article
-        class="project-card reverse reveal"
-        data-project="3"
-      >
-
-        <div class="project-info">
-
-          <div class="project-number">
-            04
-          </div>
-
-          <div class="project-details">
-
-            <p class="project-category">
-              FASHION / E-COMMERCE / EDITORIAL
-            </p>
-
-            <h3>
-              VELORA Fashion
-            </h3>
-
-            <p class="project-description">
-              A clean storefront focused on typography,
-              confidence, product presentation and
-              editorial spacing.
-            </p>
-
-            <a
-              class="project-link"
-              href="https://notshanaya7-arch.github.io/velora-fashion/"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor-text="OPEN"
-            >
-              <span>VIEW PROJECT</span>
-              <span>↗</span>
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <div class="project-visual">
-
-          <div class="project-frame">
-
-            <img
-              src="assets/project-4-cropped.png"
-              alt="VELORA Fashion website preview"
-              loading="lazy"
-            >
-
-            <div class="project-frame-overlay"></div>
-
-            <div class="project-frame-label">
-              VELORA
-            </div>
-
-          </div>
-
-        </div>
-
-      </article>
-
 
     </section>
 
